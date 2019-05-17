@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.64665bfcddb3d13ea433.css">@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:100;src:local("Montserrat Thin "),local("Montserrat-Thin"),url(/static/montserrat-latin-100-4124805c0503dbfe42dd67d7f5715964.woff2) format("woff2"),url(/static/montserrat-latin-100-c8fb2f714bbc7bc3e8dfffa916b286dc.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:100;src:local("Montserrat Thin italic"),local("Montserrat-Thinitalic"),url(/static/montserrat-latin-100italic-e4bf47bd171a9b2a72dd84c58bf90edf.woff2) format("woff2"),url(/static/montserrat-latin-100italic-d1f3f2d02ee4d7d2d4b1ad865014f189.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:200;src:local("Montserrat Extra Light "),local("Montserrat-Extra Light"),url(/static/montserrat-latin-200-444ae007121264bc1969d49b4031f9b2.woff2) format("woff2"),url(/static/montserrat-latin-200-edbce16a90aa22c297a0307b85789837.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:200;src:local("Montserrat Extra Light italic"),local("Montserrat-Extra Lightitalic"),url(/static/montserrat-latin-200italic-f316c5d1ec40f3e68654c3f38b3999f3.woff2) format("woff2"),url(/static/montserrat-latin-200italic-d7bbb730d9b5e11720b3eb32326dcca7.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:300;src:local("Montserrat Light "),local("Montserrat-Light"),url(/static/montserrat-latin-300-0a7c6df06e85d978d096d4d18fd8d43d.woff2) format("woff2"),url(/static/montserrat-latin-300-5e86df2cad22d2ef2b03516334afae5e.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:300;src:local("Montserrat Light italic"),local("Montserrat-Lightitalic"),url(/static/montserrat-latin-300italic-c076c4892bc7a4be7b9097e97a35012d.woff2) format("woff2"),url(/static/montserrat-latin-300italic-37c74a8d2d0d36a0a2c6e9a37ee15b0c.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:400;src:local("Montserrat Regular "),local("Montserrat-Regular"),url(/static/montserrat-latin-400-501ce09c42716a2f6e1503a25eb174c9.woff2) format("woff2"),url(/static/montserrat-latin-400-f29d2b8559699b6beb5b29b25b8bc572.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:400;src:local("Montserrat Regular italic"),local("Montserrat-Regularitalic"),url(/static/montserrat-latin-400italic-882908d9950d9c86ebd380877f293d95.woff2) format("woff2"),url(/static/montserrat-latin-400italic-22e7b04e5f2a901d49d4d342315a715a.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:500;src:local("Montserrat Medium "),local("Montserrat-Medium"),url(/static/montserrat-latin-500-f0f2716c5fe401d175b88715e7d28685.woff2) format("woff2"),url(/static/montserrat-latin-500-991b453bf90a0980e78966d2af7e3d3a.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:500;src:local("Montserrat Medium italic"),local("Montserrat-Mediumitalic"),url(/static/montserrat-latin-500italic-4590ebba421b3288c305305d7fa7b504.woff2) format("woff2"),url(/static/montserrat-latin-500italic-f3d41e4cdcc2314e49ddcea751d6f87f.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:600;src:local("Montserrat SemiBold "),local("Montserrat-SemiBold"),url(/static/montserrat-latin-600-15c24f7109941777774ddd2c636c6a50.woff2) format("woff2"),url(/static/montserrat-latin-600-f6dc6096f48956908c1787d9a722570a.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:600;src:local("Montserrat SemiBold italic"),local("Montserrat-SemiBolditalic"),url(/static/montserrat-latin-600italic-6d10b80529d5c36c7c09fca7193af0fc.woff2) format("woff2"),url(/static/montserrat-latin-600italic-02c4833312d94b1b0866f073023a250e.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:700;src:local("Montserrat Bold "),local("Montserrat-Bold"),url(/static/montserrat-latin-700-79982cd1f74c6fa7451bf9b37ead09ff.woff2) format("woff2"),url(/static/montserrat-latin-700-957e93fbbe131a59791cd820d98b7109.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:700;src:local("Montserrat Bold italic"),local("Montserrat-Bolditalic"),url(/static/montserrat-latin-700italic-283438e9577fe6a684466bb100e105ec.woff2) format("woff2"),url(/static/montserrat-latin-700italic-ca627c5ccc65cf80c2ecaea44b997de9.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold "),local("Montserrat-ExtraBold"),url(/static/montserrat-latin-800-35386154b78d046218fc8f88a44ff515.woff2) format("woff2"),url(/static/montserrat-latin-800-756655905d91b77960888262e7d58d35.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold italic"),local("Montserrat-ExtraBolditalic"),url(/static/montserrat-latin-800italic-e1b52a7bd83e2324db6d92bdc206844c.woff2) format("woff2"),url(/static/montserrat-latin-800italic-a69f0add9d86c1a84311d7dd8693ba4a.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:900;src:local("Montserrat Black "),local("Montserrat-Black"),url(/static/montserrat-latin-900-260c2ea3ef57feb82251952e605a36d5.woff2) format("woff2"),url(/static/montserrat-latin-900-186cae8091da578150d81958e217714a.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:900;src:local("Montserrat Black italic"),local("Montserrat-Blackitalic"),url(/static/montserrat-latin-900italic-d785fb9fc74588ffb7f306799709a97d.woff2) format("woff2"),url(/static/montserrat-latin-900italic-43b527fe77254f97ea36e2b54e845ec4.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/static/merriweather-latin-300-b1158cfcd4aacb9d8fb61625e37af46a.woff2) format("woff2"),url(/static/merriweather-latin-300-cc7de05e166e90320d7d896e0f72a19d.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/static/merriweather-latin-300italic-8fe52a48089d6ebe46db0b8e7cc66263.woff2) format("woff2"),url(/static/merriweather-latin-300italic-e1331f5397c2a673f9d3765138debdb5.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/static/merriweather-latin-400-8276fdb72ae8f4714d4e6eba704cc39f.woff2) format("woff2"),url(/static/merriweather-latin-400-69f09800f4f6479d06e44eba837df872.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/static/merriweather-latin-400italic-3a9be9ea9f7aa4af6de7307df21d9fc0.woff2) format("woff2"),url(/static/merriweather-latin-400italic-d76079ed7541a433a54f79316de086e9.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/static/merriweather-latin-700-fa534be7ffa380e39a7f6e03bf9a5e03.woff2) format("woff2"),url(/static/merriweather-latin-700-ba56ea84b8084b7ff9677f50d3cd81bd.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/static/merriweather-latin-700italic-1ef5edaaa20ae53ea50399884c5e48c6.woff2) format("woff2"),url(/static/merriweather-latin-700italic-534bc9e7ce93c73d73426e46acd78092.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/static/merriweather-latin-900-7528fb70e8a4a82c7305e72ff43ac25f.woff2) format("woff2"),url(/static/merriweather-latin-900-3799b6e2f5ed3fcccf9d7a708d7419fa.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/static/merriweather-latin-900italic-e1b4d2aaa78e12ad84aaf8a56321e4c2.woff2) format("woff2"),url(/static/merriweather-latin-900italic-2ae22f731b3424e8dbb4b37f7ca6e708.woff) format("woff")}code[class*=language-],pre[class*=language-]{color:#657b83;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}code[class*=language-]::selection,code[class*=language-] ::selection,pre[class*=language-]::selection,pre[class*=language-] ::selection{background:#073642}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background-color:#fdf6e3}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#93a1a1}.token.punctuation{color:#586e75}.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#268bd2}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string,.token.url{color:#2aa198}.token.entity{color:#657b83;background:#eee8d5}.token.atrule,.token.attr-value,.token.keyword{color:#859900}.token.class-name,.token.function{color:#b58900}.token.important,.token.regex,.token.variable{color:#cb4b16}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.gatsby-highlight-code-line{background-color:#feb;display:block;margin-right:-1em;margin-left:-1em;padding-right:1em;padding-left:.75em;border-left:.25em solid #f99}.gatsby-highlight pre[class*=language-].line-numbers{padding-left:2.8em}.gatsby-highlight{background-color:#fdf6e3;border-radius:.3em;margin:.5em 0;padding:1em;overflow:auto}.gatsby-highlight pre[class*=language-].line-numbers{padding:0 0 0 2.8em;overflow:initial}pre[class*=language-].line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}pre[class*=language-].line-numbers>code{position:relative;white-space:inherit}.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:0;font-size:100%;left:-3.8em;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}</style><meta name="generator" content="Gatsby 2.1.19"/><link rel="stylesheet" href="https://github.githubassets.com/assets/gist-embed-b3b573358bfc66d89e1e95dbf8319c09.css"/><link rel="alternate" type="application/rss+xml" href="/rss.xml"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#6649AD"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png"/><title data-react-helmet="true">Lexical Environment-the hidden part to understand Closures | Aman&#x27;s Blog</title><meta data-react-helmet="true" name="description" content="Functions in ECMAScript captures their parent scope bindings at creation time"/><meta data-react-helmet="true" property="og:title" content="Lexical Environment-the hidden part to understand Closures"/><meta data-react-helmet="true" property="og:description" content="Functions in ECMAScript captures their parent scope bindings at creation time"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Amandeep Singh"/><meta data-react-helmet="true" name="twitter:title" content="Lexical Environment-the hidden part to understand Closures"/><meta data-react-helmet="true" name="twitter:description" content="Functions in ECMAScript captures their parent scope bindings at creation time"/><style data-styled="brHEdM kfenVF rpgvf cDueKE cHZhRD" data-styled-version="4.2.0">
+/* sc-component-id: layout__HeadingH3-sc-1jvcolp-1 */
+.kfenVF{font-family:Montserrat,sans-serif;margin-top:0;color:palevioletred;}
+/* sc-component-id: layout__HeadingLink-sc-1jvcolp-2 */
+.rpgvf{box-shadow:none;-webkit-text-decoration:none;text-decoration:none;color:inherit;}
+/* sc-component-id: layout__Container-sc-1jvcolp-3 */
+.brHEdM{margin-left:auto;margin-right:auto;max-width:42rem;padding:2.625rem 1.3125rem;}
+/* sc-component-id: blog-post__Paragraph-jy4fwx-0 */
+.cDueKE{font-size:0.83255rem;line-height:1.75rem;display:block;margin-bottom:1.75rem;margin-top:-1.75rem;}
+/* sc-component-id: blog-post__UnorderedList-jy4fwx-1 */
+.cHZhRD{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flexWrap:wrap;-ms-flexWrap:wrap;flexWrap:wrap;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;list-style:none;padding:0;}</style><style id="typography.js">html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{font:100%/1.75 'Merriweather','Georgia',serif;box-sizing:border-box;overflow-y:scroll;}*{box-sizing:inherit;}*:before{box-sizing:inherit;}*:after{box-sizing:inherit;}body{color:hsla(0,0%,0%,0.9);font-family:'Merriweather','Georgia',serif;font-weight:400;word-wrap:break-word;font-kerning:normal;-moz-font-feature-settings:"kern", "liga", "clig", "calt";-ms-font-feature-settings:"kern", "liga", "clig", "calt";-webkit-font-feature-settings:"kern", "liga", "clig", "calt";font-feature-settings:"kern", "liga", "clig", "calt";background-color:#f9f9fb;}img{max-width:100%;margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}h1{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:Montserrat,sans-serif;font-weight:900;text-rendering:optimizeLegibility;font-size:2.5rem;line-height:1.1;}h2{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.73286rem;line-height:1.1;}h3{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.4427rem;line-height:1.1;}h4{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1rem;line-height:1.1;letter-spacing:0.140625em;text-transform:uppercase;}h5{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.83255rem;line-height:1.1;}h6{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.75966rem;line-height:1.1;font-style:italic;}hgroup{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}ul{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;list-style:disc;}ol{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;}dl{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}dd{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}p{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}figure{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}pre{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:0.85rem;line-height:1.75rem;}table{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1rem;line-height:1.75rem;border-collapse:collapse;width:100%;}fieldset{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}blockquote{margin-left:-1.75rem;margin-right:1.75rem;margin-top:0;padding-bottom:0;padding-left:1.42188rem;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1.20112rem;line-height:1.75rem;color:hsla(0,0%,0%,0.59);font-style:italic;border-left:0.32813rem solid hsla(0,0%,0%,0.9);}form{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}noscript{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}iframe{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}hr{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:calc(1.75rem - 1px);background:hsla(0,0%,0%,0.2);border:none;height:1px;}address{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}b{font-weight:700;}strong{font-weight:700;}dt{font-weight:700;}th{font-weight:700;}li{margin-bottom:calc(1.75rem / 2);}ol li{padding-left:0;}ul li{padding-left:0;}li > ol{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}li > ul{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}blockquote *:last-child{margin-bottom:0;}li *:last-child{margin-bottom:0;}p *:last-child{margin-bottom:0;}li > p{margin-bottom:calc(1.75rem / 2);}code{font-size:0.85rem;line-height:1.75rem;}kbd{font-size:0.85rem;line-height:1.75rem;}samp{font-size:0.85rem;line-height:1.75rem;}abbr{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}acronym{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}abbr[title]{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;text-decoration:none;}thead{text-align:left;}td,th{text-align:left;border-bottom:1px solid hsla(0,0%,0%,0.12);font-feature-settings:"tnum";-moz-font-feature-settings:"tnum";-ms-font-feature-settings:"tnum";-webkit-font-feature-settings:"tnum";padding-left:1.16667rem;padding-right:1.16667rem;padding-top:0.875rem;padding-bottom:calc(0.875rem - 1px);}th:first-child,td:first-child{padding-left:0;}th:last-child,td:last-child{padding-right:0;}blockquote > :last-child{margin-bottom:0;}blockquote cite{font-size:1rem;line-height:1.75rem;color:hsla(0,0%,0%,0.9);font-weight:400;}blockquote cite:before{content:"— ";}ul,ol{margin-left:0;}@media only screen and (max-width:480px){ul,ol{margin-left:1.75rem;}blockquote{margin-left:-1.3125rem;margin-right:0;padding-left:0.98438rem;}}h1,h2,h3,h4,h5,h6{margin-top:3.5rem;}a{box-shadow:0 1px 0 0 currentColor;color:#007acc;text-decoration:none;}a:hover,a:active{box-shadow:none;}mark,ins{background:#007acc;color:white;padding:0.10938rem 0.21875rem;text-decoration:none;}a.gatsby-resp-image-link{box-shadow:none;}</style><link as="script" rel="preload" href="/component---src-templates-blog-post-js-80765b6e34a493572bfd.js"/><link as="script" rel="preload" href="/1-b8de3a922c9f79b0ebbc.js"/><link as="script" rel="preload" href="/app-9d29b319efc5bcc4dfdb.js"/><link as="script" rel="preload" href="/styles-58a17bb20fdd5b4665d9.js"/><link as="script" rel="preload" href="/webpack-runtime-1bc1c81906e4eac7f20c.js"/><link as="fetch" rel="preload" href="/static/d/906/path---lexical-envrionment-the-hidden-part-to-understand-closures-ba-8-26c-hokfnGrzcRsL5rKQYIuulOAX58.json" crossorigin="use-credentials"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group"><div class="layout__Container-sc-1jvcolp-3 brHEdM"><header><h3 class="layout__HeadingH3-sc-1jvcolp-1 kfenVF"><a class="layout__HeadingLink-sc-1jvcolp-2 rpgvf" href="/">Aman&#x27;s Blog</a></h3> </header><main><h1>Lexical Environment-the hidden part to understand Closures</h1><p class="blog-post__Paragraph-jy4fwx-0 cDueKE">May 12, 2019</p><div><p><strong>Closures</strong> can be a daunting concept when you are new to JavaScript world. Scouring the internet will give you tons of definition about what <em>closure</em> is. But I have felt that mostly these definitions are vague and don’t explain the fundamental cause of their existence.</p>
+<p>Today we will try to demystify some of these concepts which are part of the <a href="https://tc39.github.io/ecma262">ECMAScript 262 specs</a>, including <strong>Execution</strong> <strong>Context</strong>, <strong>Lexical Environment</strong>, and <strong>Identifier Resolution</strong>. Additionally, we will learn that because of these mechanisms, all <em>functions</em> in ECMAScript are <em>closures</em>.</p>
+<p>I will explain the terminology first and then show you some code examples explaining how all these pieces work together. This will help to solidify your understanding.</p>
+<h2>Execution Context</h2>
+<p>JavaScript interpreter creates a new context whenever it’s about to execute a function or script we’ve written. Every script/code starts with an execution context called a global execution context. And every time we call a function, a new execution context is created and is put on top of the execution stack. The same pattern follows when you call the nested function which calls another nested function:</p>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/525613a3ed5283c001b211cc4d42ffc3/f9431/execution_context.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 60.092449922958394%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsSAAALEgHS3X78AAACmUlEQVQoz22TWW/iaBBF+f+/YzSa0UhRq5N0SDOBpiGAWWxoFgcTIIB3di9sjn3mwzy1NCVdXfulXKduOaM5Q8pqkfq4Qk0rI72/UtVKVIYlqsMK/tEnukQcT2eizyTVJYq5fMap+37A+XLmWkmSkGnrMvfFF+5/5nkoFchWSzxVSty9PPC1/IWZM+d0jOjPPOrqkpa2TtUcLlHGe+x1gDQtcPb3hO6SzC+zw5sVojmfjNxIeCQ8oWfoSGLqsTHF2wd0JxtqfYtaz6ShOkji+drYXofUP0pEvodnWmRasyaSVme4GjKwBwycAaqrpu895xf6yhAsVxxuWPxeYXik8VERDX180yajzFv8285TfZd4FTurjmr8HJQp9ksUugXm7oJY7CpOYv6vDocjzVmV5BDeJuwYbV4rX8g//8FL7k+K+b+RyneUf/xDrv7IQkwYR58Epspu0mA3bbGfymwnLYKZTLBxKWtFjPEY37KvDRUuSwXvLU+v8BfvlTtwZaEWnckrI13scLtjKS5Bb35Fbz1gKo+pr7pPeIKgNq1w2m5vyK2PBjWBNrY7aKK5ZsgMhUamgjJvsljqN+RTANHxpstB+E0HcTZX5DgIbsjXlAdLFXX1Rt8d0LV6dO0ePRFQW3zAWJkkcYLl2Sz2BoZnYfo2+t7EDCw23g55XiMKRCi2Q0YWU2Sr3/hez6aHPFypIu1eqvpUYrQYs997/OjkeZTuyTa+8dx8Iic/89QQ6K4uUq5y2azZvo/J9I0eWSlLrpmjJJLt6G1ksWxlriCNJKyVw1n8JTNnxsSeMnU+Ur9pwsIycbYuSXThFIRkTucT22AvtGPtbVhuV6x2a1zh692GWODGcUwQiH2Fp1RhcCTwD6l8P/ztjP4DJHBoVAGhuvgAAAAASUVORK5CYII='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="alt text"
+        title="execution context"
+        src="/static/525613a3ed5283c001b211cc4d42ffc3/623ee/execution_context.png"
+        srcset="/static/525613a3ed5283c001b211cc4d42ffc3/816c5/execution_context.png 148w,
+/static/525613a3ed5283c001b211cc4d42ffc3/c766b/execution_context.png 295w,
+/static/525613a3ed5283c001b211cc4d42ffc3/623ee/execution_context.png 590w,
+/static/525613a3ed5283c001b211cc4d42ffc3/f9431/execution_context.png 649w"
+        sizes="(max-width: 590px) 100vw, 590px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p>Let’s see what happens when our code is executed as shown in the picture above:</p>
+<ul>
+<li>A global execution context is created and placed at the bottom of the execution stack.</li>
+<li>When the bar is invoked, a new bar execution context is created and is put on top of the global execution context.</li>
+<li>As, bar calls to a nested function foo, a new foo execution context is created and is placed on top of the bar execution context.</li>
+<li>When foo returns, its context is popped out of the stack and flow returns to the bar context.</li>
+<li>Once bar execution is finished, the flow returns back to the global context and finally, the stack is emptied.</li>
+</ul>
+<p>Execution stack works on a LIFO data structure way. It waits for the topmost execution context to return before executing the context below.</p>
+<p>Conceptually, Execution context has a structure which looks like the following:</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript">  <span class="token comment">// Execution context in ES5</span>
+ExecutionContext <span class="token operator">=</span> <span class="token punctuation">{</span>
+  ThisBinding<span class="token punctuation">:</span> <span class="token operator">&lt;</span><span class="token keyword">this</span> value<span class="token operator">></span><span class="token punctuation">,</span>
+  VariableEnvironment<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  LexicalEnvironment<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<br/>
+<p>Don’t worry if structure looks intimidating. We will look at these components shortly. The key point to remember is that every call to execution context has two stages: <strong>Creation Stage</strong> and <strong>Execution Stage</strong>. Creation Stage is when the context is created but not invoked yet.</p>
+<p>A few things happen in the <em>creation</em> stage:</p>
+<ul>
+<li><strong>VariableEnvironment</strong> component is used for the initial storage for the variables, arguments and function declarations. The var declared variables are initialized with the value of undefined.</li>
+<li>The value of <em>This</em> is determine.</li>
+<li><strong>LexicalEnvironment</strong> is just the copy of VariableEnvironment at this stage.</li>
+</ul>
+<p>Upon <em>execution</em> stage:</p>
+<ul>
+<li>Values are assigned.</li>
+<li>LexicalEnvironment is used to resolve the bindings.</li>
+</ul>
+<p>Now, let’s try to understand what is a lexical environment.</p>
+<h2>Lexical Environment</h2>
+<p>According to ECMAScript specification 262 (8.1):</p>
+<blockquote>
+<p>A Lexical Environment is a specification type used to define the association of <a href="https://tc39.github.io/ecma262/#prod-Identifier">Identifiers</a> to specific variables and functions based upon the lexical nesting structure of ECMAScript code.</p>
+</blockquote>
+<p>Let’s try to simplify a few things here. A lexical environment consists of two main components: the <strong>environment</strong> record and a <strong>reference</strong> to the outer (parent) lexical environment:</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">var</span> y <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token operator">+</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 30</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Environment technically consist of two main components:</span>
+<span class="token comment">// environmentRecord, and a reference to the outer environment</span>
+
+<span class="token comment">// Environment of the global context</span>
+globalEnvironment <span class="token operator">=</span> <span class="token punctuation">{</span>
+  environmentRecord<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// built-ins</span>
+    <span class="token comment">// our bindings:</span>
+    <span class="token comment">// highligh-next-line</span>
+    x<span class="token punctuation">:</span> <span class="token number">10</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  outer<span class="token punctuation">:</span> <span class="token keyword">null</span> <span class="token comment">// no parent environment</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Environment of the "foo" function</span>
+fooEnvironment <span class="token operator">=</span> <span class="token punctuation">{</span>
+  environmentRecord<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    y<span class="token punctuation">:</span> <span class="token number">20</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="gatsby-highlight-code-line">  outer<span class="token punctuation">:</span> globalEnvironment</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre></div>
+<br/>
+<p>Visually it will look like this:</p>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/86bcebd393ecf6190bb2debdcaa38d09/46886/lexical_environment.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 452px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 73.67256637168141%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsSAAALEgHS3X78AAADAUlEQVQ4y4WT22/iVhCH/f+/VpX2qVIrVSttVVXpJs2W3IEYbGPMzVwMjrnYQDaEqw0kgL8OTqR9qmJpNHPm/OacOfI3Sty9Aj/HzrvDU78QGH/xaP0NQR4GKq/eLdHymXgj1ruDYY6ReYKb/YKT/kz14lemtXM5I8trP4cyF9F6XCAcFXiofKNlnuE3rln6OtHQYCaicDWD/Yr5MR7qjJ0b0Z0m2oZxytC5IxqJdmCgWIMCXzMn/JM7peIXKQ+K1EYVGt9t1GaWe7FgPOJh4FIKihQ8ncrQEk0Zq1+gPWtyaaYwPI36qIaS7+SkUCXfyqG7Ohk7g9bWKPaK4vPJ3tN0wjJcUPcbVLt24ms9m7JXoR40sTolan0bZ9iRDn2TCyMlHZ5Rlc70jkbZL8mBZrIuDUpMl/Jk+fb7A/Eh5pDY4c1Ljpj3XIxSkicWXANduqr4lXdf5sa6oeiZlPo/DoyPlR98ymazYbPdshVbSxyt18l68jwlDKMk3u/3bwfGhw9N+b+bpvMVu8OP9ce9vXe4m3XYzz0O8y7xopvEhD4Tz2Lz1JZ1l93Lhni3Fo3H6/SB7bOb+M2kw4v4o+a4t1v0UWLvEsY6q0aK9B8/YV/+hnPzO2FL8iMtAf4ItlQKvBnGxa9k//w5Ado6/4X8yScm5bME+NeegO32srQ6GZoCZ9NVqYtvuRm68vfbnkqzneV5+sR88Yg3yIsVcHs6nW6e9oMqfBqiVyWv0wvKKKYgcpb/xrlxgdm3KIhZQRX7qUmuo3Pv5Akex3hBFzMoYQ4sSsMKBaFD8wyaM4dbO52sa+MGin4Eu5ElU0tT7BbIijeExWNOF7CPSC1WSzb7SCakiNrKyLRoHCdM66jcN9Jk63fknAz2sCocBgK2jM6/+rncUJVpyUuhcFi+FtE9ZXnGbDknellRlYLb0q1cpibMao7GlXlFSktxbV1T822Ulu/QHrq0Ry5NiWueTaPfSsaoFTjU+01WUZhAfQR8tQ5ZREuJ58lF4SYi2q7f8uGS/wCF6j7b4wnrnQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="alt text"
+        title="LexicalEnvironment"
+        src="/static/86bcebd393ecf6190bb2debdcaa38d09/46886/lexical_environment.png"
+        srcset="/static/86bcebd393ecf6190bb2debdcaa38d09/3f5f2/lexical_environment.png 148w,
+/static/86bcebd393ecf6190bb2debdcaa38d09/74913/lexical_environment.png 295w,
+/static/86bcebd393ecf6190bb2debdcaa38d09/46886/lexical_environment.png 452w"
+        sizes="(max-width: 452px) 100vw, 452px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<p>As you can see when trying to resolve the identifier “<em>y</em>” in the foo context, the outer environment (global) is reached out. This process is called identifier resolution and happens on running execution context.</p>
+<p>Now, armed with this knowledge of Environments, let’s get back to the structure of Execution context and see what’s happening there:</p>
+<ul>
+<li><strong>VariableEnvironment</strong>: Its environmentRecord is used for the initial storage for the variables, arguments and function declarations, which later is filled on entering the context activation stage.</li>
+</ul>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">foo</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// The VariableEnvironment component of the foo function</span>
+<span class="token comment">//context at creation stage</span>
+fooContext<span class="token punctuation">.</span>VariableEnvironment <span class="token operator">=</span> <span class="token punctuation">{</span>
+  environmentRecord<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    arguments<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> length<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> callee<span class="token punctuation">:</span> foo <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    a<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+    b<span class="token punctuation">:</span> undefined
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  outer<span class="token punctuation">:</span> globalEnvironment
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// After the execution stage, the VE envRec</span>
+<span class="token comment">// table is filled in with the value</span>
+fooContext<span class="token punctuation">.</span>VariableEnvironment <span class="token operator">=</span> <span class="token punctuation">{</span>
+  environmentRecord<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    arguments<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span> length<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> callee<span class="token punctuation">:</span> foo <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    a<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+    b<span class="token punctuation">:</span> <span class="token number">20</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  outer<span class="token punctuation">:</span> globalEnvironment
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre></div>
+<br/>
+<ul>
+<li><strong>LexicalEnvironment</strong>: Initially, it’s just a copy of the VariableEnvironment. On the running context, it is used to determine the binding of an identifier appearing in the context.</li>
+</ul>
+<p>Both <em>VE</em> and <em>LE</em> by their nature are lexical environments, i.e both statically(at creation stage) captures the outer bindings for inner functions created in the context. This mechanism gives rise to closures.</p>
+<blockquote>
+<p>Capturing the outer binding statically for inner functions give rise to the formation of closures.</p>
+</blockquote>
+<h2>Identifier Resolution aka Scope chain lookup</h2>
+<p>Before understanding the closure, let’s understand how the scope chain is created in our execution context. As we saw earlier, each execution context has <em>LexicalEnvironment</em> which is used for identifier resolution. All the local bindings for the context are stored in the environment record table. If identifiers are not resolved in the current environmentRecord, the resolution process will continue to the outer (parent) environment record table. This pattern will continue until the identifier is resolved. If not found, a <em>ReferenceError</em> is thrown.</p>
+<p>This is very similar to the prototype lookup chain. Now, the key to remember here is that <em>LexicalEnvironment</em> captures the outer binding <strong>lexically</strong> (statically) on context creation stage and used as it is on the running context (execution stage).</p>
+<h2>Closures</h2>
+<p>As we saw in the previous section that upon function creation stage, statically saving of outer binding in the <em>LexicalEnvironment</em> of inner context gives rise to closures regardless of whether a function will be activated later or not. Let see that in an example:</p>
+<h3>Example 1:</h3>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>
+  <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// will print "10"</span></code></pre></div>
+<br/>
+<p>The <em>LexicalEnvironment</em> of foo captures the binding “<em>a</em>” at creation time, which was 10. So, when <em>foo</em> is invoked later (at execution stage), the “<em>a</em>” identifier is resolved with a value of <em>10</em> but not <em>20</em>.</p>
+<p>Conceptually, the identifier resolution process will look something like this:</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">// check for binding "a" in the env record of "foo"</span>
+<span class="token operator">--</span> foo<span class="token punctuation">.</span><span class="token punctuation">[</span><span class="token punctuation">[</span>LexicalEnvironment<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token punctuation">[</span><span class="token punctuation">[</span>Record<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">--</span><span class="token operator">></span> not found
+
+<span class="token comment">// if not found, check for its outer environment</span>
+<span class="gatsby-highlight-code-line"><span class="token operator">--</span><span class="token operator">-</span> global<span class="token punctuation">[</span><span class="token punctuation">[</span>LexicalEnvironment<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">[</span>Record<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">--</span><span class="token operator">></span> found <span class="token number">10</span></span><span class="token comment">// resolve the identifier with a value of 1</span></code></pre></div>
+<br/>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/da4e05e7876fc9c8d0c104c8151f2484/75fb1/closure_example_1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 53.2258064516129%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAACOElEQVQoz2WTC4+aUBCF/f+/pNk06SPbbrOPWBVd8YGAur5REB+Lyi6K+ED4esU0sdsJJ/dMbjL3zJkhFccx1zhHdNzCtMhxlMMqf2FRvyO28yLPcNxtYNngNMpilr7Sk26YVL+DlSFYmqTOBc51EnCJ8HSgPZSpNJ5QOzlagg9nKj27grN0MKZ1Xswiej+P2suhtH6jDzLMVzapOAq5lIqIzjyOOJz2yP0Sj7Un5EGJ8rBCbawiD8u8rz3mnsPgdcRoaQmMMRyT3nzIm+8Jha8qtnKH03iEuUI0qRD4C/SxTq6eoTaqCiiUezKqVcMPtpc24itcRardk+gI6T2jwHhaxTBl1htXqIwIwiP+fs9mt8Nx3YRHUfRfnes8dVe+51m0JxtlFFsTbSm8+29w9GC3gr2bwF9YSZ5YdPA4+Q7hGRuHaLtETEQMMyCVFW1VhUcXlMm3Clh2n4Nd5K2XRk1/YlD6xtqQCEyJnfApdlvYtVvq2Rua0mdGyg8OVpbNQkzZC9Z427VQ5SXnGcEhQB3IZGoPKOKsj6u0ZjqljsTceaUzaaAKa1SzhGaJzowilUGOmTu9rM3HOIq1KYnppvU0xX4x4fm2JKx5xvM3DFeGsEhGs1VxJ1PoFJK7qTsXa/NxscUXRkfakxaVboUXu0lLcG2o0RR8uwvoL7s8avdUhUKpneWnfMuD9gt7NflX4d8/5XxGUZwsexieOAmc81MYJQ/a7pi6Wac769K0mmiGjj7SWXor/gBeMyr6qMd+7QAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="alt text"
+        title="execution context"
+        src="/static/da4e05e7876fc9c8d0c104c8151f2484/623ee/closure_example_1.png"
+        srcset="/static/da4e05e7876fc9c8d0c104c8151f2484/816c5/closure_example_1.png 148w,
+/static/da4e05e7876fc9c8d0c104c8151f2484/c766b/closure_example_1.png 295w,
+/static/da4e05e7876fc9c8d0c104c8151f2484/623ee/closure_example_1.png 590w,
+/static/da4e05e7876fc9c8d0c104c8151f2484/75fb1/closure_example_1.png 682w"
+        sizes="(max-width: 590px) 100vw, 590px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<h3>Example 2</h3>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">outer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword">let</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+ <span class="token comment">// creating a function would statically captures</span>
+ <span class="token comment">// the value of 'id' here</span>
+ <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token function">inner</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> innerFunc <span class="token operator">=</span> <span class="token function">outer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">innerFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// prints 1;</span></code></pre></div>
+<br/>
+<p>When the <em>outer</em> function returns, its execution context is popped out from the execution stack. But when we invoke the <em>innerFunc()</em> later, it still manages to print out the correct value because <em>LexicalEnvironment</em> of inner function statically captured the “<em>id</em>” binding of its outer (parent) environment when it was created.</p>
+<div class="gatsby-highlight" data-language="javascript"><pre class="language-javascript"><code class="language-javascript"><span class="token comment">// check for binding "id" in the env record of "inner"</span>
+<span class="token operator">--</span> inner<span class="token punctuation">.</span><span class="token punctuation">[</span><span class="token punctuation">[</span>LexicalEnvironment<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token punctuation">[</span><span class="token punctuation">[</span>Record<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">--</span><span class="token operator">></span> not found
+<span class="token comment">// if not found, check for its outer environment (outer)</span>
+<span class="gatsby-highlight-code-line"><span class="token operator">--</span><span class="token operator">-</span> outer<span class="token punctuation">[</span><span class="token punctuation">[</span>LexicalEnvironment<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">[</span>Record<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">--</span><span class="token operator">></span> found <span class="token number">1</span></span><span class="token comment">// resolve the identifier with a value of 1</span></code></pre></div>
+<br/>
+<p>
+  <a
+    class="gatsby-resp-image-link"
+    href="/static/b756f46d006f1884caac36cd4b9546df/c15cb/closure_example_2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+  
+  <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 522px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 95.59386973180078%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAAsSAAALEgHS3X78AAADYElEQVQ4y5WUC2/iVhBG+f//oqpUqVLTardKGjYJCeFhGwO2eRsINviBCQESXiGJyeng3SjadlvtWrLGvv7ud+f6npkU7gVEGstWmn7uV/zSH2xtGQsKPI5KxPs9h+v19ZXvuVLBsMjwpoDbz9FtX+FIDEYqk1An8Ezi+AcNC70ix9pfZFs5NEen6htYYY2KxLrXYv+jGZYHGlnrEq2notpFKgOd8k2JipjX3NpXhv93v2lSVmByXctS6peoulXqkp3SUTA9g3bQYf9ly7x+25R/Gt6vlyy3G1aPGx42S9a7LX40ZrqYsX7cvnmx/48tv42+maa4a8K8x9O4zmpk8Bw1eXDKcNchXrhyKDGviz7M2qw9i4VTYSG/5dZW2PpyaNMOLy8v7xmu3AzxpIxXO6V6+Qu2+jt33Qw7r8DM1UUUs4uqPAUqUesThmhaxaNE61b/lMVz7Ha7d8OyUyJdOkXrKjRCi85tk/akQSOq0fJbTKd3NPwaB505qsj3BnX5713JuBGa1HxLDJ/eDbW+SlYORekUKcqt3+gy0aQyrMgp13mU1e1JG6VfoCREGH6Vgp2n2C2g9AoYo+rXhrqrcaIck2tdo/YVMSqTb+coORoNr5FgM5j1ubKuyDfzNMcNcvVrzsvnXBoZTNdk9/T8bujPfMJ5yCG6kSsxwB7aOJHDeB4loo0QsNquWQsNDyuhQmjY7DbJ+FIoSVj9gk/qWyhsNs98Z2H8u1Li5Yj90uPlfsRuLpgsfWZSck9zh3g9SVbfryPR+KIR3YPH82LEs+hjeT7ok/nL8HOGL8NLEGwGyhHmp5+4Kf7GonMOocp6VBbDmDiqwFgjNE8wz36mKcgcYmSdJHOJSmyHSsJjquEUKbeusHp56tJ12iONXmjQcBQ6Q0u2v6EfWMl3tXaBYeew/Qr5SprTqyOy2jEZ5SOqmZHFJcOCNIS0fsZ1M4fS1dClEkxhK9fOo3XKLBb3wl1dutE1GSsj+CjSjSzUG5UL64IP+Q9JrLpmUlUpU1Y709OoXcl0UMKSppCtXaILc52xLTW8pze1E+bS+imGV0nQUoTDM8nyMHbA7cBusuW6V6falx4orcoYCPnDOpZTS967QT85lPlqjj8NGEVeglK0mCQxnI0J7sIkRvPbZMt/Ax+bdp6Wf5GkAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    >
+      <img
+        class="gatsby-resp-image-image"
+        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
+        alt="alt text"
+        title="closure example 2"
+        src="/static/b756f46d006f1884caac36cd4b9546df/c15cb/closure_example_2.png"
+        srcset="/static/b756f46d006f1884caac36cd4b9546df/f44a7/closure_example_2.png 148w,
+/static/b756f46d006f1884caac36cd4b9546df/f2052/closure_example_2.png 295w,
+/static/b756f46d006f1884caac36cd4b9546df/c15cb/closure_example_2.png 522w"
+        sizes="(max-width: 522px) 100vw, 522px"
+      />
+    </span>
+  </span>
+  
+  </a>
+    </p>
+<h2>Conclusion</h2>
+<ul>
+<li>Execution context stack follows <strong>LIFO</strong> data structure.</li>
+<li>There’s one Global context where our code/script is executed.</li>
+<li>Call to a function creates a new execution context. If it has a nested function call, a new context is created and is put on top of its parent context. When the function finishes executing, it gets popped out of the stack and flow returns back to the context below in the stack.</li>
+<li>Lexical Environment has two main components: <strong>environmentRecord</strong> and <strong>reference</strong> to outer environment.</li>
+<li><strong>VariableEnvironment</strong> and <strong>LexicalEnvironment</strong> both statically captured the outer binding for inner functions created in the context.
+All functions at the <strong>creation</strong> stage statically(lexically) captures the outer binding of their parent environment. This allows the nested function to access the outer binding even if the parent context is wiped out from the execution stack. This mechanism is the foundation of closures in JavaScript.</li>
+</ul>
+<p>I hope this article was fun to read and wasn’t overwhelming. Let me know your thoughts in the comments below and if you liked it, a few 👏 will definitely make me smile 😃. Happy coding :)</p></div><hr style="margin-bottom:1.75rem"/><div style="display:flex;margin-bottom:4.375rem"><div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:50px;height:50px;margin-right:0.875rem;margin-bottom:0;min-width:50px;border-radius:100%"><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAUABQDASIAAhEBAxEB/8QAGQABAQADAQAAAAAAAAAAAAAAAAQBAgUD/8QAFwEBAQEBAAAAAAAAAAAAAAAAAwIABP/aAAwDAQACEAMQAAAB5Nk3RhZ3ms80BdWww//EABoQAAIDAQEAAAAAAAAAAAAAAAACAQMSIzL/2gAIAQEAAQUCUxzEgxZCsrarNSJ5/8QAGREAAgMBAAAAAAAAAAAAAAAAAAIBETED/9oACAEDAQE/AUSG0ZamjhpOn//EABkRAAIDAQAAAAAAAAAAAAAAAAABAhAREv/aAAgBAgEBPwFyw6HX/8QAGhAAAQUBAAAAAAAAAAAAAAAAAQAQEiExEf/aAAgBAQAGPwJSHa14xpYxst//xAAbEAEAAwADAQAAAAAAAAAAAAABABEhEEFRcf/aAAgBAQABPyGRIPbfVS7isuCrN17DoEQwxZfeD//aAAwDAQACAAMAAAAQrN+B/8QAGBEBAQEBAQAAAAAAAAAAAAAAAQARMUH/2gAIAQMBAT8Q1FZaw8iL27X/xAAXEQADAQAAAAAAAAAAAAAAAAAAARAh/9oACAECAQE/EMArf//EAB0QAQEAAgMAAwAAAAAAAAAAAAERACExUXFBsfD/2gAIAQEAAT8Q5YlcztbOufk1xgRRuakKugwkZGwBT39MmYIJ0zCU9y0gp1XeChdtfvP/2Q==" alt="Amandeep Singh" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition:opacity 0.5s;transition-delay:0.25s;border-radius:50%"/><noscript><picture><img width="50" height="50" srcset="/static/c03d5c85167bc1eb9618108b2333e2fc/be31c/profile-pic.jpg 1x,
+/static/c03d5c85167bc1eb9618108b2333e2fc/83167/profile-pic.jpg 1.5x,
+/static/c03d5c85167bc1eb9618108b2333e2fc/a795d/profile-pic.jpg 2x,
+/static/c03d5c85167bc1eb9618108b2333e2fc/ec61a/profile-pic.jpg 3x" src="/static/c03d5c85167bc1eb9618108b2333e2fc/be31c/profile-pic.jpg" alt="Amandeep Singh" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div><p>Written by<!-- --> <a href="https://twitter.com/amn_sngh"><strong>Amandeep Singh</strong></a>. Developer @ <a href="https://www.thinkmill.com.au/">Thinkmill</a> Sydney. Tech enthusiast and a pragmatic programmer.</p></div><ul class="blog-post__UnorderedList-jy4fwx-1 cHZhRD"><li><a rel="prev" href="/so-you-think-you-know-JavaScript/">← <!-- -->So you think you know JavaScript?</a></li><li></li></ul></main><footer>© <!-- -->2019<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a></footer></div></div></div><script>
+  
+  
+  if(true) {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  }
+  if (typeof ga === "function") {
+    ga('create', 'undefined', 'auto', {});
+      
+      
+      
+      }
+      </script><script id="gatsby-script-loader">/*<![CDATA[*/window.page={"componentChunkName":"component---src-templates-blog-post-js","jsonName":"lexical-envrionment-the-hidden-part-to-understand-closures-ba8","path":"/lexical-envrionment-the hidden-part-to-understand-closures/"};window.dataPath="906/path---lexical-envrionment-the-hidden-part-to-understand-closures-ba-8-26c-hokfnGrzcRsL5rKQYIuulOAX58";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-9d29b319efc5bcc4dfdb.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-2931e18f11ce80cd2c58.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-80765b6e34a493572bfd.js"],"component---src-pages-404-js":["/component---src-pages-404-js-43c4d451065039a074e5.js"],"component---src-pages-index-js":["/component---src-pages-index-js-7c66ab8dca4afd643956.js"],"pages-manifest":["/pages-manifest-625e16296d333903001c.js"]};/*]]>*/</script><script src="/webpack-runtime-1bc1c81906e4eac7f20c.js" async=""></script><script src="/styles-58a17bb20fdd5b4665d9.js" async=""></script><script src="/app-9d29b319efc5bcc4dfdb.js" async=""></script><script src="/1-b8de3a922c9f79b0ebbc.js" async=""></script><script src="/component---src-templates-blog-post-js-80765b6e34a493572bfd.js" async=""></script></body></html>

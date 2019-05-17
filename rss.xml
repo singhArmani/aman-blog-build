@@ -1,4 +1,300 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Aman's Blog]]></title><description><![CDATA[A personal blog by Amandeep Singh.]]></description><link>https://amanexplains.com/</link><generator>RSS for Node</generator><lastBuildDate>Tue, 23 Apr 2019 12:17:50 GMT</lastBuildDate><item><title><![CDATA[So you think you know JavaScript?]]></title><description><![CDATA[JavaScript  is an interesting language and we all love it because of its nature. Browsers are the home for JavaScript and both work together…]]></description><link>https://amanexplains.com//so-you-think-you-know-JavaScript/</link><guid isPermaLink="false">https://amanexplains.com//so-you-think-you-know-JavaScript/</guid><pubDate>Thu, 21 Mar 2019 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;JavaScript&lt;/strong&gt; is an interesting language and we all love it because of its nature. Browsers are the home for JavaScript and both work together at our service.
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Aman's Blog]]></title><description><![CDATA[A personal blog by Amandeep Singh.]]></description><link>https://amanexplains.com/</link><generator>RSS for Node</generator><lastBuildDate>Fri, 17 May 2019 15:29:48 GMT</lastBuildDate><item><title><![CDATA[Lexical Environment-the hidden part to understand Closures]]></title><description><![CDATA[Closures  can be a daunting concept when you are new to JavaScript world. Scouring the internet will give you tons of definition about what…]]></description><link>https://amanexplains.com//lexical-envrionment-the hidden-part-to-understand-closures/</link><guid isPermaLink="false">https://amanexplains.com//lexical-envrionment-the hidden-part-to-understand-closures/</guid><pubDate>Sun, 12 May 2019 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Closures&lt;/strong&gt; can be a daunting concept when you are new to JavaScript world. Scouring the internet will give you tons of definition about what &lt;em&gt;closure&lt;/em&gt; is. But I have felt that mostly these definitions are vague and don’t explain the fundamental cause of their existence.&lt;/p&gt;
+&lt;p&gt;Today we will try to demystify some of these concepts which are part of the &lt;a href=&quot;https://tc39.github.io/ecma262&quot;&gt;ECMAScript 262 specs&lt;/a&gt;, including &lt;strong&gt;Execution&lt;/strong&gt; &lt;strong&gt;Context&lt;/strong&gt;, &lt;strong&gt;Lexical Environment&lt;/strong&gt;, and &lt;strong&gt;Identifier Resolution&lt;/strong&gt;. Additionally, we will learn that because of these mechanisms, all &lt;em&gt;functions&lt;/em&gt; in ECMAScript are &lt;em&gt;closures&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;I will explain the terminology first and then show you some code examples explaining how all these pieces work together. This will help to solidify your understanding.&lt;/p&gt;
+&lt;h2&gt;Execution Context&lt;/h2&gt;
+&lt;p&gt;JavaScript interpreter creates a new context whenever it’s about to execute a function or script we’ve written. Every script/code starts with an execution context called a global execution context. And every time we call a function, a new execution context is created and is put on top of the execution stack. The same pattern follows when you call the nested function which calls another nested function:&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/525613a3ed5283c001b211cc4d42ffc3/f9431/execution_context.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 60.092449922958394%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsSAAALEgHS3X78AAACmUlEQVQoz22TWW/iaBBF+f+/YzSa0UhRq5N0SDOBpiGAWWxoFgcTIIB3di9sjn3mwzy1NCVdXfulXKduOaM5Q8pqkfq4Qk0rI72/UtVKVIYlqsMK/tEnukQcT2eizyTVJYq5fMap+37A+XLmWkmSkGnrMvfFF+5/5nkoFchWSzxVSty9PPC1/IWZM+d0jOjPPOrqkpa2TtUcLlHGe+x1gDQtcPb3hO6SzC+zw5sVojmfjNxIeCQ8oWfoSGLqsTHF2wd0JxtqfYtaz6ShOkji+drYXofUP0pEvodnWmRasyaSVme4GjKwBwycAaqrpu895xf6yhAsVxxuWPxeYXik8VERDX180yajzFv8285TfZd4FTurjmr8HJQp9ksUugXm7oJY7CpOYv6vDocjzVmV5BDeJuwYbV4rX8g//8FL7k+K+b+RyneUf/xDrv7IQkwYR58Epspu0mA3bbGfymwnLYKZTLBxKWtFjPEY37KvDRUuSwXvLU+v8BfvlTtwZaEWnckrI13scLtjKS5Bb35Fbz1gKo+pr7pPeIKgNq1w2m5vyK2PBjWBNrY7aKK5ZsgMhUamgjJvsljqN+RTANHxpstB+E0HcTZX5DgIbsjXlAdLFXX1Rt8d0LV6dO0ePRFQW3zAWJkkcYLl2Sz2BoZnYfo2+t7EDCw23g55XiMKRCi2Q0YWU2Sr3/hez6aHPFypIu1eqvpUYrQYs997/OjkeZTuyTa+8dx8Iic/89QQ6K4uUq5y2azZvo/J9I0eWSlLrpmjJJLt6G1ksWxlriCNJKyVw1n8JTNnxsSeMnU+Ur9pwsIycbYuSXThFIRkTucT22AvtGPtbVhuV6x2a1zh692GWODGcUwQiH2Fp1RhcCTwD6l8P/ztjP4DJHBoVAGhuvgAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;alt text&quot;
+        title=&quot;execution context&quot;
+        src=&quot;/static/525613a3ed5283c001b211cc4d42ffc3/623ee/execution_context.png&quot;
+        srcset=&quot;/static/525613a3ed5283c001b211cc4d42ffc3/816c5/execution_context.png 148w,
+/static/525613a3ed5283c001b211cc4d42ffc3/c766b/execution_context.png 295w,
+/static/525613a3ed5283c001b211cc4d42ffc3/623ee/execution_context.png 590w,
+/static/525613a3ed5283c001b211cc4d42ffc3/f9431/execution_context.png 649w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;Let’s see what happens when our code is executed as shown in the picture above:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A global execution context is created and placed at the bottom of the execution stack.&lt;/li&gt;
+&lt;li&gt;When the bar is invoked, a new bar execution context is created and is put on top of the global execution context.&lt;/li&gt;
+&lt;li&gt;As, bar calls to a nested function foo, a new foo execution context is created and is placed on top of the bar execution context.&lt;/li&gt;
+&lt;li&gt;When foo returns, its context is popped out of the stack and flow returns to the bar context.&lt;/li&gt;
+&lt;li&gt;Once bar execution is finished, the flow returns back to the global context and finally, the stack is emptied.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Execution stack works on a LIFO data structure way. It waits for the topmost execution context to return before executing the context below.&lt;/p&gt;
+&lt;p&gt;Conceptually, Execution context has a structure which looks like the following:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;  &lt;span class=&quot;token comment&quot;&gt;// Execution context in ES5&lt;/span&gt;
+ExecutionContext &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  ThisBinding&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt; value&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  VariableEnvironment&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  LexicalEnvironment&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;Don’t worry if structure looks intimidating. We will look at these components shortly. The key point to remember is that every call to execution context has two stages: &lt;strong&gt;Creation Stage&lt;/strong&gt; and &lt;strong&gt;Execution Stage&lt;/strong&gt;. Creation Stage is when the context is created but not invoked yet.&lt;/p&gt;
+&lt;p&gt;A few things happen in the &lt;em&gt;creation&lt;/em&gt; stage:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;VariableEnvironment&lt;/strong&gt; component is used for the initial storage for the variables, arguments and function declarations. The var declared variables are initialized with the value of undefined.&lt;/li&gt;
+&lt;li&gt;The value of &lt;em&gt;This&lt;/em&gt; is determine.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LexicalEnvironment&lt;/strong&gt; is just the copy of VariableEnvironment at this stage.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Upon &lt;em&gt;execution&lt;/em&gt; stage:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Values are assigned.&lt;/li&gt;
+&lt;li&gt;LexicalEnvironment is used to resolve the bindings.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now, let’s try to understand what is a lexical environment.&lt;/p&gt;
+&lt;h2&gt;Lexical Environment&lt;/h2&gt;
+&lt;p&gt;According to ECMAScript specification 262 (8.1):&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A Lexical Environment is a specification type used to define the association of &lt;a href=&quot;https://tc39.github.io/ecma262/#prod-Identifier&quot;&gt;Identifiers&lt;/a&gt; to specific variables and functions based upon the lexical nesting structure of ECMAScript code.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Let’s try to simplify a few things here. A lexical environment consists of two main components: the &lt;strong&gt;environment&lt;/strong&gt; record and a &lt;strong&gt;reference&lt;/strong&gt; to the outer (parent) lexical environment:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; x &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; y &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;x&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;y&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 30&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Environment technically consist of two main components:&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// environmentRecord, and a reference to the outer environment&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Environment of the global context&lt;/span&gt;
+globalEnvironment &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  environmentRecord&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// built-ins&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// our bindings:&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// highligh-next-line&lt;/span&gt;
+    x&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  outer&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// no parent environment&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Environment of the &quot;foo&quot; function&lt;/span&gt;
+fooEnvironment &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  environmentRecord&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    y&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;  outer&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; globalEnvironment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;Visually it will look like this:&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/86bcebd393ecf6190bb2debdcaa38d09/46886/lexical_environment.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 452px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 73.67256637168141%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsSAAALEgHS3X78AAADAUlEQVQ4y4WT22/iVhCH/f+/VpX2qVIrVSttVVXpJs2W3IEYbGPMzVwMjrnYQDaEqw0kgL8OTqR9qmJpNHPm/OacOfI3Sty9Aj/HzrvDU78QGH/xaP0NQR4GKq/eLdHymXgj1ruDYY6ReYKb/YKT/kz14lemtXM5I8trP4cyF9F6XCAcFXiofKNlnuE3rln6OtHQYCaicDWD/Yr5MR7qjJ0b0Z0m2oZxytC5IxqJdmCgWIMCXzMn/JM7peIXKQ+K1EYVGt9t1GaWe7FgPOJh4FIKihQ8ncrQEk0Zq1+gPWtyaaYwPI36qIaS7+SkUCXfyqG7Ohk7g9bWKPaK4vPJ3tN0wjJcUPcbVLt24ms9m7JXoR40sTolan0bZ9iRDn2TCyMlHZ5Rlc70jkbZL8mBZrIuDUpMl/Jk+fb7A/Eh5pDY4c1Ljpj3XIxSkicWXANduqr4lXdf5sa6oeiZlPo/DoyPlR98ymazYbPdshVbSxyt18l68jwlDKMk3u/3bwfGhw9N+b+bpvMVu8OP9ce9vXe4m3XYzz0O8y7xopvEhD4Tz2Lz1JZ1l93Lhni3Fo3H6/SB7bOb+M2kw4v4o+a4t1v0UWLvEsY6q0aK9B8/YV/+hnPzO2FL8iMtAf4ItlQKvBnGxa9k//w5Ado6/4X8yScm5bME+NeegO32srQ6GZoCZ9NVqYtvuRm68vfbnkqzneV5+sR88Yg3yIsVcHs6nW6e9oMqfBqiVyWv0wvKKKYgcpb/xrlxgdm3KIhZQRX7qUmuo3Pv5Akex3hBFzMoYQ4sSsMKBaFD8wyaM4dbO52sa+MGin4Eu5ElU0tT7BbIijeExWNOF7CPSC1WSzb7SCakiNrKyLRoHCdM66jcN9Jk63fknAz2sCocBgK2jM6/+rncUJVpyUuhcFi+FtE9ZXnGbDknellRlYLb0q1cpibMao7GlXlFSktxbV1T822Ulu/QHrq0Ry5NiWueTaPfSsaoFTjU+01WUZhAfQR8tQ5ZREuJ58lF4SYi2q7f8uGS/wCF6j7b4wnrnQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;alt text&quot;
+        title=&quot;LexicalEnvironment&quot;
+        src=&quot;/static/86bcebd393ecf6190bb2debdcaa38d09/46886/lexical_environment.png&quot;
+        srcset=&quot;/static/86bcebd393ecf6190bb2debdcaa38d09/3f5f2/lexical_environment.png 148w,
+/static/86bcebd393ecf6190bb2debdcaa38d09/74913/lexical_environment.png 295w,
+/static/86bcebd393ecf6190bb2debdcaa38d09/46886/lexical_environment.png 452w&quot;
+        sizes=&quot;(max-width: 452px) 100vw, 452px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;As you can see when trying to resolve the identifier “&lt;em&gt;y&lt;/em&gt;” in the foo context, the outer environment (global) is reached out. This process is called identifier resolution and happens on running execution context.&lt;/p&gt;
+&lt;p&gt;Now, armed with this knowledge of Environments, let’s get back to the structure of Execution context and see what’s happening there:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;VariableEnvironment&lt;/strong&gt;: Its environmentRecord is used for the initial storage for the variables, arguments and function declarations, which later is filled on entering the context activation stage.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; b &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// The VariableEnvironment component of the foo function&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;//context at creation stage&lt;/span&gt;
+fooContext&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;VariableEnvironment &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  environmentRecord&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    arguments&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; length&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; callee&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; foo &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    a&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    b&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; undefined
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  outer&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; globalEnvironment
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// After the execution stage, the VE envRec&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// table is filled in with the value&lt;/span&gt;
+fooContext&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;VariableEnvironment &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  environmentRecord&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    arguments&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; length&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; callee&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; foo &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    a&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    b&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  outer&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; globalEnvironment
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;LexicalEnvironment&lt;/strong&gt;: Initially, it’s just a copy of the VariableEnvironment. On the running context, it is used to determine the binding of an identifier appearing in the context.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Both &lt;em&gt;VE&lt;/em&gt; and &lt;em&gt;LE&lt;/em&gt; by their nature are lexical environments, i.e both statically(at creation stage) captures the outer bindings for inner functions created in the context. This mechanism gives rise to closures.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Capturing the outer binding statically for inner functions give rise to the formation of closures.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Identifier Resolution aka Scope chain lookup&lt;/h2&gt;
+&lt;p&gt;Before understanding the closure, let’s understand how the scope chain is created in our execution context. As we saw earlier, each execution context has &lt;em&gt;LexicalEnvironment&lt;/em&gt; which is used for identifier resolution. All the local bindings for the context are stored in the environment record table. If identifiers are not resolved in the current environmentRecord, the resolution process will continue to the outer (parent) environment record table. This pattern will continue until the identifier is resolved. If not found, a &lt;em&gt;ReferenceError&lt;/em&gt; is thrown.&lt;/p&gt;
+&lt;p&gt;This is very similar to the prototype lookup chain. Now, the key to remember here is that &lt;em&gt;LexicalEnvironment&lt;/em&gt; captures the outer binding &lt;strong&gt;lexically&lt;/strong&gt; (statically) on context creation stage and used as it is on the running context (execution stage).&lt;/p&gt;
+&lt;h2&gt;Closures&lt;/h2&gt;
+&lt;p&gt;As we saw in the previous section that upon function creation stage, statically saving of outer binding in the &lt;em&gt;LexicalEnvironment&lt;/em&gt; of inner context gives rise to closures regardless of whether a function will be activated later or not. Let see that in an example:&lt;/p&gt;
+&lt;h3&gt;Example 1:&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; a &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; a &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;bar&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// will print &quot;10&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;The &lt;em&gt;LexicalEnvironment&lt;/em&gt; of foo captures the binding “&lt;em&gt;a&lt;/em&gt;” at creation time, which was 10. So, when &lt;em&gt;foo&lt;/em&gt; is invoked later (at execution stage), the “&lt;em&gt;a&lt;/em&gt;” identifier is resolved with a value of &lt;em&gt;10&lt;/em&gt; but not &lt;em&gt;20&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Conceptually, the identifier resolution process will look something like this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// check for binding &quot;a&quot; in the env record of &quot;foo&quot;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt; foo&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;LexicalEnvironment&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Record&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; not found
+
+&lt;span class=&quot;token comment&quot;&gt;// if not found, check for its outer environment&lt;/span&gt;
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; global&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;LexicalEnvironment&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Record&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; found &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token comment&quot;&gt;// resolve the identifier with a value of 1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/da4e05e7876fc9c8d0c104c8151f2484/75fb1/closure_example_1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 53.2258064516129%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAACOElEQVQoz2WTC4+aUBCF/f+/pNk06SPbbrOPWBVd8YGAur5REB+Lyi6K+ED4esU0sdsJJ/dMbjL3zJkhFccx1zhHdNzCtMhxlMMqf2FRvyO28yLPcNxtYNngNMpilr7Sk26YVL+DlSFYmqTOBc51EnCJ8HSgPZSpNJ5QOzlagg9nKj27grN0MKZ1Xswiej+P2suhtH6jDzLMVzapOAq5lIqIzjyOOJz2yP0Sj7Un5EGJ8rBCbawiD8u8rz3mnsPgdcRoaQmMMRyT3nzIm+8Jha8qtnKH03iEuUI0qRD4C/SxTq6eoTaqCiiUezKqVcMPtpc24itcRardk+gI6T2jwHhaxTBl1htXqIwIwiP+fs9mt8Nx3YRHUfRfnes8dVe+51m0JxtlFFsTbSm8+29w9GC3gr2bwF9YSZ5YdPA4+Q7hGRuHaLtETEQMMyCVFW1VhUcXlMm3Clh2n4Nd5K2XRk1/YlD6xtqQCEyJnfApdlvYtVvq2Rua0mdGyg8OVpbNQkzZC9Z427VQ5SXnGcEhQB3IZGoPKOKsj6u0ZjqljsTceaUzaaAKa1SzhGaJzowilUGOmTu9rM3HOIq1KYnppvU0xX4x4fm2JKx5xvM3DFeGsEhGs1VxJ1PoFJK7qTsXa/NxscUXRkfakxaVboUXu0lLcG2o0RR8uwvoL7s8avdUhUKpneWnfMuD9gt7NflX4d8/5XxGUZwsexieOAmc81MYJQ/a7pi6Wac769K0mmiGjj7SWXor/gBeMyr6qMd+7QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;alt text&quot;
+        title=&quot;execution context&quot;
+        src=&quot;/static/da4e05e7876fc9c8d0c104c8151f2484/623ee/closure_example_1.png&quot;
+        srcset=&quot;/static/da4e05e7876fc9c8d0c104c8151f2484/816c5/closure_example_1.png 148w,
+/static/da4e05e7876fc9c8d0c104c8151f2484/c766b/closure_example_1.png 295w,
+/static/da4e05e7876fc9c8d0c104c8151f2484/623ee/closure_example_1.png 590w,
+/static/da4e05e7876fc9c8d0c104c8151f2484/75fb1/closure_example_1.png 682w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;Example 2&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;outer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+ &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+ &lt;span class=&quot;token comment&quot;&gt;// creating a function would statically captures&lt;/span&gt;
+ &lt;span class=&quot;token comment&quot;&gt;// the value of &apos;id&apos; here&lt;/span&gt;
+ &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;inner&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;id&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; innerFunc &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;outer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;innerFunc&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// prints 1;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;When the &lt;em&gt;outer&lt;/em&gt; function returns, its execution context is popped out from the execution stack. But when we invoke the &lt;em&gt;innerFunc()&lt;/em&gt; later, it still manages to print out the correct value because &lt;em&gt;LexicalEnvironment&lt;/em&gt; of inner function statically captured the “&lt;em&gt;id&lt;/em&gt;” binding of its outer (parent) environment when it was created.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// check for binding &quot;id&quot; in the env record of &quot;inner&quot;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt; inner&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;LexicalEnvironment&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Record&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; not found
+&lt;span class=&quot;token comment&quot;&gt;// if not found, check for its outer environment (outer)&lt;/span&gt;
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; outer&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;LexicalEnvironment&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Record&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; found &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token comment&quot;&gt;// resolve the identifier with a value of 1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;br/&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/b756f46d006f1884caac36cd4b9546df/c15cb/closure_example_2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 522px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 95.59386973180078%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAAsSAAALEgHS3X78AAADYElEQVQ4y5WUC2/iVhBG+f//oqpUqVLTardKGjYJCeFhGwO2eRsINviBCQESXiGJyeng3SjadlvtWrLGvv7ud+f6npkU7gVEGstWmn7uV/zSH2xtGQsKPI5KxPs9h+v19ZXvuVLBsMjwpoDbz9FtX+FIDEYqk1An8Ezi+AcNC70ix9pfZFs5NEen6htYYY2KxLrXYv+jGZYHGlnrEq2notpFKgOd8k2JipjX3NpXhv93v2lSVmByXctS6peoulXqkp3SUTA9g3bQYf9ly7x+25R/Gt6vlyy3G1aPGx42S9a7LX40ZrqYsX7cvnmx/48tv42+maa4a8K8x9O4zmpk8Bw1eXDKcNchXrhyKDGviz7M2qw9i4VTYSG/5dZW2PpyaNMOLy8v7xmu3AzxpIxXO6V6+Qu2+jt33Qw7r8DM1UUUs4uqPAUqUesThmhaxaNE61b/lMVz7Ha7d8OyUyJdOkXrKjRCi85tk/akQSOq0fJbTKd3NPwaB505qsj3BnX5713JuBGa1HxLDJ/eDbW+SlYORekUKcqt3+gy0aQyrMgp13mU1e1JG6VfoCREGH6Vgp2n2C2g9AoYo+rXhrqrcaIck2tdo/YVMSqTb+coORoNr5FgM5j1ubKuyDfzNMcNcvVrzsvnXBoZTNdk9/T8bujPfMJ5yCG6kSsxwB7aOJHDeB4loo0QsNquWQsNDyuhQmjY7DbJ+FIoSVj9gk/qWyhsNs98Z2H8u1Li5Yj90uPlfsRuLpgsfWZSck9zh3g9SVbfryPR+KIR3YPH82LEs+hjeT7ok/nL8HOGL8NLEGwGyhHmp5+4Kf7GonMOocp6VBbDmDiqwFgjNE8wz36mKcgcYmSdJHOJSmyHSsJjquEUKbeusHp56tJ12iONXmjQcBQ6Q0u2v6EfWMl3tXaBYeew/Qr5SprTqyOy2jEZ5SOqmZHFJcOCNIS0fsZ1M4fS1dClEkxhK9fOo3XKLBb3wl1dutE1GSsj+CjSjSzUG5UL64IP+Q9JrLpmUlUpU1Y709OoXcl0UMKSppCtXaILc52xLTW8pze1E+bS+imGV0nQUoTDM8nyMHbA7cBusuW6V6falx4orcoYCPnDOpZTS967QT85lPlqjj8NGEVeglK0mCQxnI0J7sIkRvPbZMt/Ax+bdp6Wf5GkAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;alt text&quot;
+        title=&quot;closure example 2&quot;
+        src=&quot;/static/b756f46d006f1884caac36cd4b9546df/c15cb/closure_example_2.png&quot;
+        srcset=&quot;/static/b756f46d006f1884caac36cd4b9546df/f44a7/closure_example_2.png 148w,
+/static/b756f46d006f1884caac36cd4b9546df/f2052/closure_example_2.png 295w,
+/static/b756f46d006f1884caac36cd4b9546df/c15cb/closure_example_2.png 522w&quot;
+        sizes=&quot;(max-width: 522px) 100vw, 522px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Execution context stack follows &lt;strong&gt;LIFO&lt;/strong&gt; data structure.&lt;/li&gt;
+&lt;li&gt;There’s one Global context where our code/script is executed.&lt;/li&gt;
+&lt;li&gt;Call to a function creates a new execution context. If it has a nested function call, a new context is created and is put on top of its parent context. When the function finishes executing, it gets popped out of the stack and flow returns back to the context below in the stack.&lt;/li&gt;
+&lt;li&gt;Lexical Environment has two main components: &lt;strong&gt;environmentRecord&lt;/strong&gt; and &lt;strong&gt;reference&lt;/strong&gt; to outer environment.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;VariableEnvironment&lt;/strong&gt; and &lt;strong&gt;LexicalEnvironment&lt;/strong&gt; both statically captured the outer binding for inner functions created in the context.
+All functions at the &lt;strong&gt;creation&lt;/strong&gt; stage statically(lexically) captures the outer binding of their parent environment. This allows the nested function to access the outer binding even if the parent context is wiped out from the execution stack. This mechanism is the foundation of closures in JavaScript.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I hope this article was fun to read and wasn’t overwhelming. Let me know your thoughts in the comments below and if you liked it, a few 👏 will definitely make me smile 😃. Happy coding :)&lt;/p&gt;</content:encoded></item><item><title><![CDATA[So you think you know JavaScript?]]></title><description><![CDATA[JavaScript  is an interesting language and we all love it because of its nature. Browsers are the home for JavaScript and both work together…]]></description><link>https://amanexplains.com//so-you-think-you-know-JavaScript/</link><guid isPermaLink="false">https://amanexplains.com//so-you-think-you-know-JavaScript/</guid><pubDate>Thu, 21 Mar 2019 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;JavaScript&lt;/strong&gt; is an interesting language and we all love it because of its nature. Browsers are the home for JavaScript and both work together at our service.
 JS has a few concepts where people tend to take it lightly and sometime may tumble over. Concepts like prototyping, closures and event-loops are still one of those obscure areas where most of the JS developers take a detour. And as we know “little knowledge is a dangerous thing”, it may lead to making mistakes.&lt;/p&gt;
 &lt;p&gt;Let’s play a mini-game where I am going to ask you a few questions and you have to try answering all of them. Make a guess even if you don’t know the answer or if it’s out of your knowledge. Note down your answers and then check the corresponding answers below. Give yourself a score of 1 for each correct answer. Here we go.&lt;/p&gt;
 &lt;blockquote&gt;
