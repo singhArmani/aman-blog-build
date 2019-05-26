@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Aman's Blog]]></title><description><![CDATA[A personal blog by Amandeep Singh.]]></description><link>https://amanexplains.com/</link><generator>RSS for Node</generator><lastBuildDate>Sat, 25 May 2019 13:07:25 GMT</lastBuildDate><item><title><![CDATA[Hidden gems of debugging]]></title><description><![CDATA[Anything that cut some of your arduous task time is good for your productivity. Debugging is one of those strenuous tasks. Developers strive…]]></description><link>https://amanexplains.com//hidden-gems-of-debugging/</link><guid isPermaLink="false">https://amanexplains.com//hidden-gems-of-debugging/</guid><pubDate>Sat, 25 May 2019 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Anything that cut some of your arduous task time is good for your productivity. Debugging is one of those strenuous tasks. Developers strive to write bug-free code, but we all know that this is far from true. No one likes to see bugs in their code—those red color lines are not very appealing, right? Nonetheless, errors are good if you happen to catch them early. Debugging them properly will give you new learning and a feeling of satisfaction. There were countless moments when I learned a lot while debugging my own code and seeing how it could challenge my own concepts.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Aman's Blog]]></title><description><![CDATA[A personal blog by Amandeep Singh.]]></description><link>https://amanexplains.com/</link><generator>RSS for Node</generator><lastBuildDate>Sun, 26 May 2019 13:18:04 GMT</lastBuildDate><item><title><![CDATA[Hidden gems of debugging]]></title><description><![CDATA[Anything that cut some of your arduous task time is good for your productivity. Debugging is one of those strenuous tasks. Developers strive…]]></description><link>https://amanexplains.com//hidden-gems-of-debugging/</link><guid isPermaLink="false">https://amanexplains.com//hidden-gems-of-debugging/</guid><pubDate>Sat, 25 May 2019 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Anything that cut some of your arduous task time is good for your productivity. Debugging is one of those strenuous tasks. Developers strive to write bug-free code, but we all know that this is far from true. No one likes to see bugs in their code—those red color lines are not very appealing, right? Nonetheless, errors are good if you happen to catch them early. Debugging them properly will give you new learning and a feeling of satisfaction. There were countless moments when I learned a lot while debugging my own code and seeing how it could challenge my own concepts.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;We all learn by making mistakes, and make mistakes again to learn more.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Enough of motivation. Let’s get to business.&lt;/p&gt;
 &lt;p&gt;Today, I am going to share some of the tricks and tips you could use to supercharge your debugging skills. I’ve only tried these tricks in chrome dev tools (sorry FireFox users), but some of them are browser agnostic.&lt;/p&gt;
 &lt;h3&gt;&lt;a id=&quot;short_hand&quot;&gt;&lt;/a&gt; 1. Using shorthand object property value notation in console.log&lt;/h3&gt;
-&lt;p&gt;This is my favourite &lt;em&gt;console.log&lt;/em&gt; trick and has to be on top of the list. You must have written torrents of &lt;em&gt;console&lt;/em&gt; statements in your code base trying to figure out the value of a varible. The Convenience of use has made ”&lt;strong&gt;console&lt;/strong&gt;” the leader of the debugging championship 🏆. The golden line looks like this:&lt;/p&gt;
+&lt;p&gt;This is my favourite &lt;em&gt;console.log&lt;/em&gt; trick and has to be on top of the list. You must have written torrents of &lt;em&gt;console&lt;/em&gt; statements in your code base trying to figure out the value of a variable. The Convenience of use has made ”&lt;strong&gt;console&lt;/strong&gt;” the leader of the debugging championship 🏆. The golden line looks like this:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt; console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;br&gt;
 This is awesome and you get to open up your console dev tool to see the value. But, as the number of lines grows, it becomes hard to trace the reference of that particular value.
@@ -26,7 +26,7 @@ This is awesome and you get to open up your console dev tool to see the value. B
 &lt;br&gt;
 &lt;p&gt;Doing so, will give you the reference variable along with its value. Less code more value.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Bonus: Use ‘var’ instead of ‘const’ or ‘let’ when declaring variables inside your chrome’s console tab to avoid annoying &lt;strong&gt;Syntax Error&lt;/strong&gt;. ‘var’ is your scratchpad buddy.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bonus&lt;/strong&gt;: Use ‘var’ instead of ‘const’ or ‘let’ when declaring variables inside your chrome’s console tab to avoid annoying &lt;strong&gt;Syntax Error&lt;/strong&gt;. ‘var’ is your scratchpad buddy.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;2. No more wrapping of curly braces for fat &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions&quot;&gt;arrow&lt;/a&gt; functions&lt;/h3&gt;
 &lt;p&gt; You must have used &lt;strong&gt;fat arrow&lt;/strong&gt; function by now (if you haven’t, you should start using it). They are short and precise and omit the requirement of the &lt;em&gt;curly&lt;/em&gt; braces and &lt;em&gt;return&lt;/em&gt; statement when writing your function definition.&lt;/p&gt;
@@ -65,22 +65,22 @@ The problem is the cleanup time consumption. You can obviously go and find each 
 &lt;p&gt;Google has added this &lt;a href=&quot;https://developers.google.com/web/updates/2019/01/devtools&quot;&gt;feature&lt;/a&gt; in Chrome 73. It allows you to add console statement in your &lt;strong&gt;source&lt;/strong&gt; code straight from your dev tool.&lt;/p&gt;
 &lt;p&gt;Steps:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Open &lt;strong&gt;Souces&lt;/strong&gt; section of your dev tool and locate your source code.&lt;/li&gt;
+&lt;li&gt;Open &lt;strong&gt;Sources&lt;/strong&gt; section of your dev tool and locate your source code.&lt;/li&gt;
 &lt;li&gt;Write click on any of the line number you want to add your console statements.&lt;/li&gt;
 &lt;li&gt;A list of options will come up; select &lt;strong&gt;Add logpoint&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;A &lt;strong&gt;Breakpoint&lt;/strong&gt; editor will show up allowing you to enter variable name. It’s similar to how you write your expression inside &lt;em&gt;console.log()&lt;/em&gt; function.&lt;/li&gt;
 &lt;li&gt;Enter a shorthand property notation trick I showed you &lt;a href=&quot;#short_hand&quot;&gt;above&lt;/a&gt;. Click outside the &lt;strong&gt;editor&lt;/strong&gt; or hit &lt;strong&gt;Enter&lt;/strong&gt; to save.&lt;/li&gt;
 &lt;li&gt;A orange badge will represent your Logpoint and you are all set.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Now, everytime your script is executed, you will see the values being logged out at the console section of your dev tool. You can add mulitple log points.&lt;/p&gt;
+&lt;p&gt;Now, every time your script is executed, you will see the values being logged out at the console section of your dev tool. You can add multiple log points.&lt;/p&gt;
 &lt;p&gt;Action speaks louder than words:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/add_logpoints-73ed58323852eaac589cdc1381e6204f.gif&quot; alt=&quot;add log points&quot;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Bonus: You can also use conditional breakpoint feature to insert a breakpoint when the condition evaluates to true.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bonus&lt;/strong&gt;: You can also use conditional breakpoint feature to insert a breakpoint when the condition evaluates to true.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;4. Store and copying&lt;/h3&gt;
 &lt;p&gt;Chrome dev tool is where I spend most of my time debugging. I use it as my JavaScript scratchpad. It has lots of in-built features at our disposal. One of the cool feature, that has been so helpful for me, is &lt;strong&gt;copying&lt;/strong&gt; the variable value into my &lt;strong&gt;clipboard&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;To copy any reference variable, for example &lt;em&gt;x&lt;/em&gt;, into your clipboard, just type &lt;strong&gt;copy(x)&lt;/strong&gt; into the console tab and hit Enter. Chrome will copy that variable into your clipboard and you can paste it anywhwere by using normal &lt;em&gt;paste&lt;/em&gt; command.&lt;/p&gt;
+&lt;p&gt;To copy any reference variable, for example &lt;em&gt;x&lt;/em&gt;, into your clipboard, just type &lt;strong&gt;copy(x)&lt;/strong&gt; into the console tab and hit Enter. Chrome will copy that variable into your clipboard and you can paste it anywhere by using normal &lt;em&gt;paste&lt;/em&gt; command.&lt;/p&gt;
 &lt;p&gt;The big benefit comes into picture when you are playing around with network response. Here you can combine this &lt;strong&gt;copy&lt;/strong&gt; feature with another excellent feature called &lt;strong&gt;store as  global variable&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Let’s see that in action:&lt;/p&gt;
 &lt;ul&gt;
@@ -92,7 +92,7 @@ The problem is the cleanup time consumption. You can obviously go and find each 
 &lt;p&gt;Kill two birds with one stone.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/store_copy-5f6a31dea0bdee0e1378be3ca8aca878.gif&quot; alt=&quot;store as a global variable and then use copy command&quot;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Bonus: You can use ‘Ctrl + f’ to search for a particular string match over the entire response object in the preview section.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bonus&lt;/strong&gt;: You can use ‘Ctrl + f’ to search for a particular string match over the entire response object in the preview section.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3&gt;5. The Breakpoint for your network requests&lt;/h3&gt;
 &lt;p&gt;Ideally, you should strive to keep your HTTP requests as minimum as possible while building your client. Not only it gives you a smooth &lt;strong&gt;performance&lt;/strong&gt; but also helps to avoid &lt;strong&gt;bugs&lt;/strong&gt;.&lt;/p&gt;
