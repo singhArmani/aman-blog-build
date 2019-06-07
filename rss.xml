@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Aman's Blog]]></title><description><![CDATA[A personal blog by Amandeep Singh.]]></description><link>https://amanexplains.com/</link><generator>RSS for Node</generator><lastBuildDate>Sun, 26 May 2019 13:18:04 GMT</lastBuildDate><item><title><![CDATA[Hidden gems of debugging]]></title><description><![CDATA[Anything that cut some of your arduous task time is good for your productivity. Debugging is one of those strenuous tasks. Developers strive…]]></description><link>https://amanexplains.com//hidden-gems-of-debugging/</link><guid isPermaLink="false">https://amanexplains.com//hidden-gems-of-debugging/</guid><pubDate>Sat, 25 May 2019 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Anything that cut some of your arduous task time is good for your productivity. Debugging is one of those strenuous tasks. Developers strive to write bug-free code, but we all know that this is far from true. No one likes to see bugs in their code—those red color lines are not very appealing, right? Nonetheless, errors are good if you happen to catch them early. Debugging them properly will give you new learning and a feeling of satisfaction. There were countless moments when I learned a lot while debugging my own code and seeing how it could challenge my own concepts.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Aman's Blog]]></title><description><![CDATA[A personal blog by Amandeep Singh.]]></description><link>https://amanexplains.com/</link><generator>RSS for Node</generator><lastBuildDate>Fri, 07 Jun 2019 12:47:56 GMT</lastBuildDate><item><title><![CDATA[Hidden gems of debugging]]></title><description><![CDATA[Anything that cut some of your arduous task time is good for your productivity. Debugging is one of those strenuous tasks. Developers strive…]]></description><link>https://amanexplains.com//hidden-gems-of-debugging/</link><guid isPermaLink="false">https://amanexplains.com//hidden-gems-of-debugging/</guid><pubDate>Sat, 25 May 2019 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;Anything that cut some of your arduous task time is good for your productivity. Debugging is one of those strenuous tasks. Developers strive to write bug-free code, but we all know that this is far from true. No one likes to see bugs in their code—those red color lines are not very appealing, right? Nonetheless, errors are good if you happen to catch them early. Debugging them properly will give you new learning and a feeling of satisfaction. There were countless moments when I learned a lot while debugging my own code and seeing how it could challenge my own concepts.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;We all learn by making mistakes, and make mistakes again to learn more.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -74,7 +74,7 @@ The problem is the cleanup time consumption. You can obviously go and find each 
 &lt;/ul&gt;
 &lt;p&gt;Now, every time your script is executed, you will see the values being logged out at the console section of your dev tool. You can add multiple log points.&lt;/p&gt;
 &lt;p&gt;Action speaks louder than words:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/add_logpoints-73ed58323852eaac589cdc1381e6204f.gif&quot; alt=&quot;add log points&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/add_logpoints-73ed58323852eaac589cdc1381e6204f.gif&quot; alt=&quot;alt text&quot; title=&quot;add log points&quot;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Bonus&lt;/strong&gt;: You can also use conditional breakpoint feature to insert a breakpoint when the condition evaluates to true.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -89,8 +89,8 @@ The problem is the cleanup time consumption. You can obviously go and find each 
 &lt;li&gt;Right-click the property name and select &lt;strong&gt;Store as a global variable&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;The variable will be shown in your console tab, and you can use &lt;strong&gt;copy()&lt;/strong&gt; function to have it in your clipboard.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Kill two birds with one stone.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/store_copy-5f6a31dea0bdee0e1378be3ca8aca878.gif&quot; alt=&quot;store as a global variable and then use copy command&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Kill two birds with one stone.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/store_copy-5f6a31dea0bdee0e1378be3ca8aca878.gif&quot; alt=&quot;alt text&quot; title=&quot;store as a global variable and then use copy command&quot;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Bonus&lt;/strong&gt;: You can use ‘Ctrl + f’ to search for a particular string match over the entire response object in the preview section.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -106,7 +106,7 @@ We needed to analyse that when a particular kind of request was triggered, we co
 &lt;li&gt;Hit &lt;strong&gt;+&lt;/strong&gt; button and a &lt;strong&gt;Breakpoint&lt;/strong&gt; editor should come up asking you to enter the keyword.&lt;/li&gt;
 &lt;li&gt;Enter your keyword and hit &lt;strong&gt;Enter&lt;/strong&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;/fetch_breakpoint-785129b685e3acf6c69d00b49053228d.gif&quot; alt=&quot;fetch breakpoint&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/fetch_breakpoint-785129b685e3acf6c69d00b49053228d.gif&quot; alt=&quot;alt text&quot; title=&quot;fetch breakpoint&quot;&gt;&lt;/p&gt;
 &lt;h3&gt;6. Copying your request as cURL&lt;/h3&gt;
 &lt;p&gt;This is handy when you want to trigger your request from a &lt;strong&gt;command line&lt;/strong&gt; too like &lt;strong&gt;cmd&lt;/strong&gt; or &lt;strong&gt;bash&lt;/strong&gt;. You can also paste the copied link into your &lt;a href=&quot;https://www.getpostman.com/&quot;&gt;Postman app&lt;/a&gt; and it will fill up all the request headers for you. Very handy in visualising your request.&lt;/p&gt;
 &lt;ul&gt;
@@ -115,7 +115,7 @@ We needed to analyse that when a particular kind of request was triggered, we co
 &lt;li&gt;Hovering over the &lt;strong&gt;Copy&lt;/strong&gt; options will show you a list of different format you can copy your request as.&lt;/li&gt;
 &lt;li&gt;Select &lt;strong&gt;Copy as cURL&lt;/strong&gt; and it will be saved into your &lt;strong&gt;clipboard&lt;/strong&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;/copy_as_curl-cf96e4b8962d23707bc5717b833a01d1.gif&quot; alt=&quot;copy as cURL&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/copy_as_curl-cf96e4b8962d23707bc5717b833a01d1.gif&quot; alt=&quot;alt text&quot; title=&quot;copy as cURL&quot;&gt;&lt;/p&gt;
 &lt;h3&gt;7. Don’t let go off your CSS changes—persist styling when refresh&lt;/h3&gt;
 &lt;p&gt;This tip is dedicated to our &lt;strong&gt;UI/Designers&lt;/strong&gt; friends. We know that via &lt;strong&gt;Styles&lt;/strong&gt; section of &lt;strong&gt;Elements&lt;/strong&gt; tab, we can modify the &lt;strong&gt;CSS&lt;/strong&gt;. But these changes &lt;strong&gt;don’t&lt;/strong&gt; persist when you &lt;strong&gt;refresh&lt;/strong&gt; the page. If you wish to persist the modification you made to the existing stylesheet, you can do this via the following steps:&lt;/p&gt;
 &lt;ul&gt;
