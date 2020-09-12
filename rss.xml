@@ -1,4 +1,139 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Aman's Blog]]></title><description><![CDATA[A personal blog by Amandeep Singh.]]></description><link>https://amanexplains.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 26 Apr 2020 04:50:37 GMT</lastBuildDate><item><title><![CDATA[What's the deal with Object.prototype.hasOwnProperty.call()?]]></title><description><![CDATA[I am sure you might have seen the following line of code either while reading someone’s code or in a library. And now you are wondering what…]]></description><link>https://amanexplains.com/what&apos;s-the-deal-with-Object.prototype.hasOwnProperty.call()/</link><guid isPermaLink="false">https://amanexplains.com/what&apos;s-the-deal-with-Object.prototype.hasOwnProperty.call()/</guid><pubDate>Sun, 26 Apr 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;I am sure you might have seen the following line of code either while reading someone’s code or in a library.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Aman's Blog]]></title><description><![CDATA[A personal blog by Amandeep Singh.]]></description><link>https://amanexplains.com</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 12 Sep 2020 04:54:06 GMT</lastBuildDate><item><title><![CDATA[How to smartly cleanup your commit history using git reset?]]></title><description><![CDATA[TLDR Running  will move the branch to this old commit. And now when you run , you will see all the changes you have made since  in your…]]></description><link>https://amanexplains.com/how-to-smartly-cleanup-your-commit-history-using-git/</link><guid isPermaLink="false">https://amanexplains.com/how-to-smartly-cleanup-your-commit-history-using-git/</guid><pubDate>Mon, 17 Aug 2020 22:12:03 GMT</pubDate><content:encoded>&lt;h3&gt;TLDR&lt;/h3&gt;
+&lt;p&gt;Running &lt;code class=&quot;language-text&quot;&gt;git reset --soft &amp;lt;commit-hash&amp;gt;&lt;/code&gt; will move the branch to this old commit. And now when you run &lt;code class=&quot;language-text&quot;&gt;git status&lt;/code&gt;, you will see all the changes you have made since &lt;code class=&quot;language-text&quot;&gt;commit-hash&lt;/code&gt; in your staging area. You can then create a single commit to update your commit history. &lt;/p&gt;
+&lt;p&gt;With &lt;code class=&quot;language-text&quot;&gt;--mixed&lt;/code&gt;(also a default) flag, Git will match your staging area with the content snapshot at that commit, which means all those changes since old commit have been unstaged too. Now, you can selectively stage those files and can create multiple new commits however you want.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;A commit message should justify your intent for the change, and not just add unnecessary noise to the Git history. Therefore, It’s a good habit to keep your commit history clean and Git has a few tools to achieve this.&lt;/p&gt;
+&lt;p&gt;In this article, I will show you how you can smartly clean up your commit history using &lt;code class=&quot;language-text&quot;&gt;git reset&lt;/code&gt; But before I throw in that tip, I would also like to unveil the reasoning behind it so that it can be more fruitful in a long run.&lt;/p&gt;
+&lt;p&gt;If you wish to skip the basics, you can jump straight to the &lt;a href=&quot;#cleanup&quot;&gt;cleanup section&lt;/a&gt; too. &lt;/p&gt;
+&lt;p&gt;Let’s get started. &lt;/p&gt;
+&lt;h3&gt;Pointers 👈&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;HEAD&lt;/strong&gt; and &lt;strong&gt;branch&lt;/strong&gt; are two different concepts in Git. The branch is just a lightweight movable pointer to one of the commits you are on, whereas, HEAD by default points to the branch you are currently on.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d560e44680db636724edf0254f829546/2e9f9/Pointer.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 292px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 89.86486486486487%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAAAsSAAALEgHS3X78AAACVUlEQVQ4y4VUO4tTQRQeEUs7sdjWQkVhWwvBH2GldlYrVoKIZmGFLGhnKzaKIBbikqSQxV0QkSXZbBFXQ2LM5sbcPDaPzfMmue+bz5m5D2NybzJwmDPzzfnOd+bcuQQT2GPiGGbWMzaZ2IcsU4Xy5xOU31sY5z5Czkch/3oLMkfol8CH0NAGwPEeat+/4Fv0DY4Sn2HRBOQ/VfBRiGCFqrgLTdhGPxuFWtyBkv/gEC6z6TyU0CPVZUCXIAoZmGqPrkeUEEuIfPZsvn+Z4oc5KI5PfBuyoGyujqmkS3l/C2pkE3sbN9F5H4K889LnDpc0yS3X1E2M1q9AX6OawpdhPToH6RYBce9k1txgX4wRGpZNeP8MtPAqjMcrkG4Tp2TMX/z0PIc5JSsHMcjRZ2i8o+XGnmO8+8pWaBiGZ5Zl8SA2cyWm6WHMd7GJQ8rG9tcEBrrTlFKphGaziZOTEzQaDdRqNU+NJEmoVCocY1Yul9Hv9z38uFZFndrBfgLVsohSUQCpVqucKJVKoV6vo9VqIRKJ8OBsNstJ0+k092VZRjweRzKZhCAI/Eyv10Mmk+GxjIsUi0VOyDbZAQYwnwWLosiV5XI5FAoFtNtt7rOKut0ux9neUT7PORgXYRvMWCY2dzodryRN03gww5gxX1EUD3f3o7EYyvRqut1OcJf9OuwOt2Hu+HH4E5qq2U1Z9K0FY7TTdBq+XsModAm90FWMN1YxCF9f8PQCBE6/lPGTizBDKzBf3ID19AKGd0jA3wbB/vRLGW9eg37vFLSH52E8OIvh3dP4C7+MSv2roYSbAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Pointers&quot;
+        title=&quot;&quot;
+        src=&quot;/static/d560e44680db636724edf0254f829546/2e9f9/Pointer.png&quot;
+        srcset=&quot;/static/d560e44680db636724edf0254f829546/12f09/Pointer.png 148w,
+/static/d560e44680db636724edf0254f829546/2e9f9/Pointer.png 292w&quot;
+        sizes=&quot;(max-width: 292px) 100vw, 292px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;When Git moves the HEAD, it also modifies the index and working directory to reflect the changes of that commit.&lt;/p&gt;
+&lt;p&gt;Now when you run &lt;code class=&quot;language-text&quot;&gt;git reset&lt;/code&gt;, it moves the branch HEAD is pointing to. For example, if you are on &lt;code class=&quot;language-text&quot;&gt;master&lt;/code&gt; branch, running &lt;code class=&quot;language-text&quot;&gt;git reset 8fgh5&lt;/code&gt; will move the branch to this commit as shown in the picture below:
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/2e8eff9a0f5b4b9f49aa510339223c35/2e9f9/git%20reset.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 292px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 93.24324324324323%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAAsSAAALEgHS3X78AAACn0lEQVQ4y4VU32vTUBQOoq++DV+dIPjki/jkm/pfyIThwB8wfXHsQUEEFdE3fRkoCP6g4oOWsVqY4nRTRxHcaLu1tulMW9e1c9QmaZo2ae5nzk2ypE3EkMM9JznnO985594rgAFBYcwCPYZcgp5/iU7hDTo/Xtv6K+jSW+5mO9kv1/zHNYWg4fg6gOafHAzpCzILcXyde47f2Y+waouwrL7rx3wg5oMKQSMISAy7YhxaMQElP4ueOIdueT7MkA0SEoYzeI7MsoFNBfJOBY1fRcoAy9AG2Q2XzCIAvQDv03bbREasBlrCQiBhwCEw3kN5B8bSM5Rjt/H53gUYHx5Bz37abQv3Y1ElD9FmbtP170l0xgSYV0eA6wfRHReg3jrhxNo+IUA23EOPoQf4bRZdG7B/8wjMu8dhnBfQvnEsGjBYMnMn5os75YYE7ellNGfGUX84Bu3xBLSFJ7sDC8c5IoSGxTP7Q2n1gFpT89vs/ouaNAc0TROeWJblT9kNkH6W8P7dPJxKzQGgfr+/G0s67+HW1hbq9TpoLZfL0HXdYdZqcZskl8thc3MT1aq/fcifbFo9fXl52QFMpVKQJImDxGIxlEolpNNpKIqCTCaDlZUVqKqKbDaLZDKJjY0NnqTT6WB1dRXr6+tot9uIx+MQKpUK1tbWuBPptFJZxJrsYrGIfD7PGRYKBTSbTV4iEaBvoihyIT2RSECgzJSJMhCjYH9kWYamaVxIJz/vIZ2AF5eWkM6k0TN6kO0KI6cceVb/8V8sltBobPsnJWovBQND4m789ux9qFcOQJ46BHVqFOr0YdSunYy4HIb1gcuXOafENrWZs+hP7oX14BSsO0dhXtqD8mkhfDn8D9BjqL6YhnJGgDI5AuXifijn9qE6MYq/h06SRHCjhjQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;git reset&quot;
+        title=&quot;&quot;
+        src=&quot;/static/2e8eff9a0f5b4b9f49aa510339223c35/2e9f9/git%20reset.png&quot;
+        srcset=&quot;/static/2e8eff9a0f5b4b9f49aa510339223c35/12f09/git%20reset.png 148w,
+/static/2e8eff9a0f5b4b9f49aa510339223c35/2e9f9/git%20reset.png 292w&quot;
+        sizes=&quot;(max-width: 292px) 100vw, 292px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;git reset&lt;/code&gt; moves the branch HEAD is pointing to.
+&lt;code class=&quot;language-text&quot;&gt;git checkout &amp;lt;branch-name&amp;gt;&lt;/code&gt; moves the HEAD to that branch.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Git reset has 3 flavours at your disposal: —&lt;em&gt;soft&lt;/em&gt;, —&lt;em&gt;mixed&lt;/em&gt;, and —&lt;em&gt;hard&lt;/em&gt;. Irrespective of which one you chose, running &lt;code class=&quot;language-text&quot;&gt;git reset&lt;/code&gt; will always start by moving the branch HEAD points to, and stops where you ask it to. It runs the following operations in order: &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Move the branch HEAD point to (&lt;strong&gt;stop here if —soft&lt;/strong&gt;).&lt;/li&gt;
+&lt;li&gt;Modify the index(staging area) to look like HEAD (&lt;strong&gt;stop here if —mixed&lt;/strong&gt;).&lt;/li&gt;
+&lt;li&gt;Make the working directory looks like the index (&lt;strong&gt;—hard&lt;/strong&gt;).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;With the foundation set aside, let’s see how can you use the &lt;code class=&quot;language-text&quot;&gt;--soft&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;--mixed&lt;/code&gt;(also a default) options with &lt;code class=&quot;language-text&quot;&gt;git reset&lt;/code&gt; to clean up your commit history.&lt;/p&gt;
+&lt;p&gt;Time for some awesomeness 🎉.&lt;/p&gt;
+&lt;h3&gt;&lt;span id=&quot;cleanup&quot;&gt;It’s cleanup time&lt;/span&gt; ⏰&lt;/h3&gt;
+&lt;p&gt;If you have been lazily writing multiple vague commits, you can use &lt;code class=&quot;language-text&quot;&gt;git reset --soft &amp;lt;old-commit&amp;gt;&lt;/code&gt; to make your branch point to that old commit. And as we learned, Git will start by moving the branch pointer to it and stops right there. &lt;strong&gt;It won’t modify the index or working directory&lt;/strong&gt;. And everything you have committed so far since this commit (old-commit) will be shown in your staging area. It essentially undid all the &lt;code class=&quot;language-text&quot;&gt;git commit&lt;/code&gt; commands. Running &lt;code class=&quot;language-text&quot;&gt;git status&lt;/code&gt; will now show ‘Changes to be committed’ message.     &lt;/p&gt;
+&lt;p&gt;Now, you can go ahead and commit those changes with a new message 😍. &lt;/p&gt;
+&lt;p&gt;I normally use &lt;code class=&quot;language-text&quot;&gt;--soft&lt;/code&gt; reset variant when I feel like squashing old commits into a single commit. But if you wish to create multiple commits starting from &lt;code class=&quot;language-text&quot;&gt;old-commit&lt;/code&gt;, you can also run &lt;code class=&quot;language-text&quot;&gt;git reset &amp;lt;old-commit&amp;gt;&lt;/code&gt;. Git runs this command with &lt;code class=&quot;language-text&quot;&gt;--mixed&lt;/code&gt; option by default. Doing so, Git will move your branch to that commit but also &lt;strong&gt;modifies your index area to match HEAD&lt;/strong&gt;. In other words, all the changes you have committed since then will be unstaged. Think of it as the opposite of &lt;code class=&quot;language-text&quot;&gt;git add&lt;/code&gt;. Running &lt;code class=&quot;language-text&quot;&gt;git status&lt;/code&gt; will now show &lt;code class=&quot;language-text&quot;&gt;Changes not staged for commit&lt;/code&gt; message. &lt;/p&gt;
+&lt;p&gt;Now you can selectively add files to the staging area and create meaningful commits to clean up your commit history.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;HEAD~{n}&lt;/strong&gt; refers to the nth parent of your HEAD. So, &lt;strong&gt;HEAD~1&lt;/strong&gt; gives you the first parent commit of HEAD. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Closing thoughts 👋&lt;/h3&gt;
+&lt;p&gt;I’ve always enjoyed this proverb: &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“Give a man a fish and you feed him for a day; teach a man to fish and you feed him for a lifetime.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I hope that through this article I have not just given you a tip, but also have elaborated the rationale behind it. Now you can feel more confident using &lt;code class=&quot;language-text&quot;&gt;git reset&lt;/code&gt; in your daily workflow. Strive to keep your commit history clean, and your future colleagues will thank you for this 🙏. &lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;That’s for today. And if you are interested in learning another tip, here’s my article about &lt;a href=&quot;https://www.amanexplains.com/git-interactive-enhance-your-work-productiviy-by-10X/&quot;&gt;git interactive&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Git Interactive—enhance your work productivity by 10X]]></title><description><![CDATA[Git has a plethora of commands at your disposal. But we often end up using only a handful of those in our daily git workflow. The  and  are…]]></description><link>https://amanexplains.com/git-interactive-enhance-your-work-productiviy-by-10X/</link><guid isPermaLink="false">https://amanexplains.com/git-interactive-enhance-your-work-productiviy-by-10X/</guid><pubDate>Sat, 01 Aug 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Git&lt;/strong&gt; has a plethora of commands at your disposal. But we often end up using only a handful of those in our daily git workflow. The &lt;code class=&quot;language-text&quot;&gt;git add&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;git checkout&lt;/code&gt; are one of those indispensable commands: &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// stage the modified content of the working directory&lt;/span&gt;
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;git add &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// for checking out to other branches&lt;/span&gt;
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;git checkout &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;branch&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;name&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But, I have often seen devs not leveraging these commands to their full power. The aforementioned usages are often enough to get the job done. Moreover, our mind is so comfortable in using them that we don’t want to explore what rest they have to offer.  &lt;/p&gt;
+&lt;p&gt;This article is my attempt to change how you think about these two commands. Welcome to the world of &lt;strong&gt;git interactive&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3&gt;1. Interactive Staging&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;git add -p&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;Explanation&lt;/h4&gt;
+&lt;p&gt;This command gives you the flexibility of selecting &lt;strong&gt;granular changes&lt;/strong&gt;, and mark them accordingly to go into your &lt;strong&gt;staging area&lt;/strong&gt;. Instead of adding a complete file, You can stage only desired hunks of diffs from it and leave the rest. For e.g, If you have made two changes in your tracked file &lt;code class=&quot;language-text&quot;&gt;README.md&lt;/code&gt; , you can stage one of them and not the other. &lt;/p&gt;
+&lt;h4&gt;Use Cases&lt;/h4&gt;
+&lt;h5&gt;Add smaller commits&lt;/h5&gt;
+&lt;p&gt;We should strive to keep our commits smaller. A commit subject should be enough to justify your reason for the specified change.&lt;/p&gt;
+&lt;p&gt;In those scenarios, where you have gone too far and refactored a huge bunch of code, &lt;code class=&quot;language-text&quot;&gt;git add -p&lt;/code&gt; is your best bet. It helps you to add small and isolated changes and make them ready for a commit. You can re-visit and select more hunks to be part of the subsequent commits. &lt;/p&gt;
+&lt;h5&gt;Handy while debugging and refactoring&lt;/h5&gt;
+&lt;p&gt;While diagnosing an issue, you might have sprinkled a whole bunch of console.log statements. Doing so, you might have refactored a few lines of code that you might want to keep for future commits. &lt;/p&gt;
+&lt;p&gt;You can smartly use &lt;code class=&quot;language-text&quot;&gt;git add -p&lt;/code&gt; to cherry-pick those useful lines of code and create a commit out of that. This will leave the log statements in your working directory, which you can safely discard later on. &lt;/p&gt;
+&lt;h3&gt;2. Interactive checkout&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;git checkout -p&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;Explanation&lt;/h4&gt;
+&lt;p&gt;This command allows you to &lt;strong&gt;discard hunks&lt;/strong&gt; interactively from your working directory. In other words, it does the opposite of interactive staging. Instead of discarding all the changes in a file, you can choose which part of the file you want to remove and keep the rest 🚀. &lt;/p&gt;
+&lt;h4&gt;Use Cases&lt;/h4&gt;
+&lt;h5&gt;Keeping your working directory clean&lt;/h5&gt;
+&lt;p&gt;If you have been brainstorming about an idea, and have quickly scribbled a few lines to code. You can invoke this command and interactivity remove irrelevant code from your working directory, leaving important bits to become part of the staging area. &lt;/p&gt;
+&lt;h5&gt;Handy while debugging&lt;/h5&gt;
+&lt;p&gt;The same use case as we have for interactive staging, but works in reverse order. Instead of cherry-picking useful bits, you can discard the unnecessary log statements and leave the important work for future staging.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;This is all for now. To learn more about git tools and command, I highly recommend reading this book &lt;a href=&quot;https://git-scm.com/book/en/v2&quot;&gt;here&lt;/a&gt;.  Now go ahead and give these commands a try.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[What's the deal with Object.prototype.hasOwnProperty.call()?]]></title><description><![CDATA[I am sure you might have seen the following line of code either while reading someone’s code or in a library. And now you are wondering what…]]></description><link>https://amanexplains.com/what&apos;s-the-deal-with-Object.prototype.hasOwnProperty.call()/</link><guid isPermaLink="false">https://amanexplains.com/what&apos;s-the-deal-with-Object.prototype.hasOwnProperty.call()/</guid><pubDate>Sun, 26 Apr 2020 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;I am sure you might have seen the following line of code either while reading someone’s code or in a library.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token class-name&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;hasOwnProperty&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;objRef&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;propName&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;And now you are wondering what on earth this code is doing. You start doubting your JavaScript skills. Don’t worry. You are at the right place.&lt;/p&gt;
 &lt;p&gt;I have chosen this piece of code for a few purposes, and by demystifying this, we will understand the following things: &lt;/p&gt;
@@ -310,7 +445,7 @@ The problem is the cleanup time consumption. You can obviously go and find each 
 &lt;/ul&gt;
 &lt;p&gt;Now, every time your script is executed, you will see the values being logged out at the console section of your dev tool. You can add multiple log points.&lt;/p&gt;
 &lt;p&gt;Action speaks louder than words:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/73ed58323852eaac589cdc1381e6204f/add_logpoints.gif&quot; alt=&quot;alt text&quot; title=&quot;add log points&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/73ed58323852eaac589cdc1381e6204f/add_logpoints.gif&quot; alt=&quot;Add log points&quot; title=&quot;add log points&quot;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Bonus&lt;/strong&gt;: You can also use conditional breakpoint feature to insert a breakpoint when the condition evaluates to true.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -759,12 +894,12 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &lt;div class=&quot;gist-file&quot;&gt;
       &lt;div class=&quot;gist-data&quot;&gt;
         &lt;div class=&quot;js-gist-file-update-container js-task-list-container file-box&quot;&gt;
-  &lt;div id=&quot;file-hoisting-csv&quot; class=&quot;file&quot;&gt;
+  &lt;div id=&quot;file-hoisting-csv&quot; class=&quot;file my-2&quot;&gt;
     
 
-  &lt;div itemprop=&quot;text&quot; class=&quot;Box-body p-0 blob-wrapper data type-csv &quot;&gt;
+  &lt;div itemprop=&quot;text&quot; class=&quot;Box-body p-0 blob-wrapper data type-csv  &quot;&gt;
       &lt;div class=&quot;blob-interaction-bar&quot;&gt;
-  &lt;svg class=&quot;octicon octicon-search&quot; viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M15.7 13.3l-3.81-3.83A5.93 5.93 0 0013 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 000-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
+  &lt;svg class=&quot;octicon octicon-search&quot; viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;
   &lt;input type=&quot;text&quot; name=&quot;filter&quot; class=&quot;form-control js-csv-filter-field blob-filter&quot; autocapitalize=&quot;off&quot;
          placeholder=&quot;Search this file…&quot; aria-label=&quot;Search this file…&quot;&gt;
 &lt;/div&gt;
@@ -910,10 +1045,10 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &lt;div class=&quot;gist-file&quot;&gt;
       &lt;div class=&quot;gist-data&quot;&gt;
         &lt;div class=&quot;js-gist-file-update-container js-task-list-container file-box&quot;&gt;
-  &lt;div id=&quot;file-steps-event-loop-md&quot; class=&quot;file&quot;&gt;
+  &lt;div id=&quot;file-steps-event-loop-md&quot; class=&quot;file my-2&quot;&gt;
     
-  &lt;div id=&quot;file-steps-event-loop-md-readme&quot; class=&quot;Box-body readme blob js-code-block-container px-5&quot;&gt;
-    &lt;article class=&quot;markdown-body entry-content&quot; itemprop=&quot;text&quot;&gt;&lt;h1&gt;&lt;a id=&quot;user-content-steps&quot; class=&quot;anchor&quot; aria-hidden=&quot;true&quot; href=&quot;#steps&quot;&gt;&lt;svg class=&quot;octicon octicon-link&quot; viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Steps&lt;/h1&gt;
+  &lt;div id=&quot;file-steps-event-loop-md-readme&quot; class=&quot;Box-body readme blob js-code-block-container p-5 p-xl-6 &quot;&gt;
+    &lt;article class=&quot;markdown-body entry-content container-lg&quot; itemprop=&quot;text&quot;&gt;&lt;h1&gt;&lt;a id=&quot;user-content-steps&quot; class=&quot;anchor&quot; aria-hidden=&quot;true&quot; href=&quot;#steps&quot;&gt;&lt;svg class=&quot;octicon octicon-link&quot; viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Steps&lt;/h1&gt;
 &lt;ol&gt;
 &lt;li&gt;Calling &lt;em&gt;foo()&lt;/em&gt; will put the &lt;em&gt;foo&lt;/em&gt; function into the &lt;strong&gt;call stack&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;While processing the code inside, JS engine encounters the &lt;em&gt;setTimeout&lt;/em&gt;.&lt;/li&gt;
@@ -1182,9 +1317,9 @@ element&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;props&lt;sp
 &lt;/blockquote&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;&lt;pre class=&quot;language-jsx&quot;&gt;&lt;code class=&quot;language-jsx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;HOC&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;WrappedComponent&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;EnhancedComponent&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;token comment&quot;&gt;/*
-     Encapsulate your logic here...
-   */&lt;/span&gt;
+   &lt;span class=&quot;token comment&quot;&gt;/*&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;     Encapsulate your logic here...&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;   */&lt;/span&gt;
 
     &lt;span class=&quot;token comment&quot;&gt;// render the UI using Wrapped Component&lt;/span&gt;
     &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
@@ -1205,9 +1340,9 @@ element&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;props&lt;sp
 &lt;/blockquote&gt;
 &lt;p&gt;In simple words, you create a &lt;strong&gt;class&lt;/strong&gt; component to encapsulate your logic (side effects) and when it comes to render, this component simply calls your function by passing only the data which is required to render the UI.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;&lt;pre class=&quot;language-jsx&quot;&gt;&lt;code class=&quot;language-jsx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;RenderProps&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;token comment&quot;&gt;/*
-  Encapsulate your logic here...
-*/&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;/*&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;  Encapsulate your logic here...&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;*/&lt;/span&gt;
 
   &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;token comment&quot;&gt;// call the functional props by passing the data required to render UI&lt;/span&gt;
@@ -1450,7 +1585,7 @@ a &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; c &lt;span class
   &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;ChildPureComponent&lt;/span&gt;&lt;/span&gt;
         &lt;span class=&quot;token attr-name&quot;&gt;handleClick&lt;/span&gt;&lt;span class=&quot;token script language-javascript&quot;&gt;&lt;span class=&quot;token script-punctuation punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;fetchData&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-        &lt;span class=&quot;token attr-name&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;title&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;
+        &lt;span class=&quot;token attr-name&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;title&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;
       &lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
