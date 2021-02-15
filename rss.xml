@@ -1,4 +1,277 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Aman's Blog]]></title><description><![CDATA[A personal blog by Amandeep Singh.]]></description><link>https://amanexplains.com</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 12 Sep 2020 04:54:06 GMT</lastBuildDate><item><title><![CDATA[How to smartly cleanup your commit history using git reset?]]></title><description><![CDATA[TLDR Running  will move the branch to this old commit. And now when you run , you will see all the changes you have made since  in your…]]></description><link>https://amanexplains.com/how-to-smartly-cleanup-your-commit-history-using-git/</link><guid isPermaLink="false">https://amanexplains.com/how-to-smartly-cleanup-your-commit-history-using-git/</guid><pubDate>Mon, 17 Aug 2020 22:12:03 GMT</pubDate><content:encoded>&lt;h3&gt;TLDR&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Aman's Blog]]></title><description><![CDATA[A personal blog by Amandeep Singh.]]></description><link>https://amanexplains.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 15 Feb 2021 12:31:05 GMT</lastBuildDate><item><title><![CDATA[An Easy Explanation to Prototypal Delegation in JavaScript]]></title><description><![CDATA[JavaScript language stands on two pillars: functional programming and prototypal delegation. The addition of  in JavaScript is mere a…]]></description><link>https://amanexplains.com/an-easy-explanation-to-prototypal-delegation-in-javascript/</link><guid isPermaLink="false">https://amanexplains.com/an-easy-explanation-to-prototypal-delegation-in-javascript/</guid><pubDate>Mon, 15 Feb 2021 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;JavaScript language stands on two pillars: &lt;a href=&quot;https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0&quot;&gt;functional programming&lt;/a&gt; and prototypal delegation. The addition of &lt;code class=&quot;language-text&quot;&gt;classes&lt;/code&gt; in JavaScript is mere a syntactic sugar to give it Object-oriented programming feel: unwrap them and you will find functions inside.&lt;/p&gt;
+&lt;h2&gt;Prototypal Delegation&lt;/h2&gt;
+&lt;p&gt;Prototypal delegation is all about delegating the responsibility to the prototype higher up in the [[Prototype]] chain. &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+Object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getPrototypeOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;foo&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// true&lt;/span&gt;
+Object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getPrototypeOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// true&lt;/span&gt;
+Object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getPrototypeOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// null&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The prototype chain will look like this: &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;foo —&gt; Function.prototype —&gt; Object.prototype —&gt; null&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In simple words, if you try to look for a property that is &lt;strong&gt;not&lt;/strong&gt; owned by the object, the JavaScript engine will &lt;strong&gt;traverse up&lt;/strong&gt; its prototype chain until it finds it. Let’s see an example to understand it.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; recipe &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; name&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Garlic Naan&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; recipeBook &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;getRecipeName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Set &apos;recipeBook&apos; as the prototype of &apos;recipe&apos;&lt;/span&gt;
+Object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setPrototypeOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;recipe&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; recipeBook&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Prototypal delegation in action&lt;/span&gt;
+recipe&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getRecipeName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// prints &apos;Garlic Naan&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The prototype chain will look like this: &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;recipe —&gt; recipeBook -&gt; Object.prototype —&gt; null&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The object &lt;code class=&quot;language-text&quot;&gt;recipe&lt;/code&gt; doesn’t own the &lt;code class=&quot;language-text&quot;&gt;getRecipeName&lt;/code&gt; property. But by setting &lt;code class=&quot;language-text&quot;&gt;recipeBook&lt;/code&gt; as its prototype, we have delegated the job of printing the &lt;code class=&quot;language-text&quot;&gt;name&lt;/code&gt; to the &lt;code class=&quot;language-text&quot;&gt;recipeBook&lt;/code&gt; instance. This is called the prototypal delegation.&lt;/p&gt;
+&lt;p&gt;Now, let say you also want &lt;code class=&quot;language-text&quot;&gt;recipe&lt;/code&gt; to delegate the task of &lt;code class=&quot;language-text&quot;&gt;orderRecipe()&lt;/code&gt; to another instance &lt;code class=&quot;language-text&quot;&gt;order&lt;/code&gt;. You can do this by extending the prototype chain like:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; order &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;orderRecipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt; ordered!&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Extending the prototype chain&lt;/span&gt;
+Object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setPrototypeOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;recipeBook&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; order&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+recipe&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;orderRecipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// prints &apos;Garlic Naan ordered!&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The prototype chain will extend to this: &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;recipe —&gt; recipeBook —&gt; order —&gt; Object.prototype —&gt; null&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Now, I think it should be easy to relate why you are able to invoke &lt;code class=&quot;language-text&quot;&gt;recipe.hasOwnProperty()&lt;/code&gt; even though none of the object literals we declared owned &lt;code class=&quot;language-text&quot;&gt;hasOwnProperty&lt;/code&gt;. This is because all object literals implicitly inherit from &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes&quot;&gt;&lt;strong&gt;Object.prototype&lt;/strong&gt;&lt;/a&gt;, which means the &lt;code class=&quot;language-text&quot;&gt;hasOwnProptery()&lt;/code&gt; task has been delegated to &lt;code class=&quot;language-text&quot;&gt;Object.protoype&lt;/code&gt;. &lt;/p&gt;
+&lt;p&gt;Here’s the complete code example: &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; recipe &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; name&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Garlic Naan&quot;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; recipeBook &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;getRecipeName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Set &apos;recipeBook&apos; as the prototype of &apos;recipe&apos;&lt;/span&gt;
+Object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setPrototypeOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;recipe&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; recipeBook&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; order &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;orderRecipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt; ordered!&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Extending the prototype chain&lt;/span&gt;
+Object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setPrototypeOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;recipeBook&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; order&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Prototypal delegation in action&lt;/span&gt;
+recipe&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getRecipeName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// prints &apos;Garlic Naan&apos;&lt;/span&gt;
+recipe&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;orderRecipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// prints &apos;Garlic Naan ordered!&apos;&lt;/span&gt;
+recipe&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;hasOwnProperty&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;//true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Constructor function and the new keyword&lt;/h2&gt;
+&lt;p&gt;Before I leave you with this delegation concept, I also want to talk about &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/Function&quot;&gt;constructor functions&lt;/a&gt; and why do you need to use the &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new&quot;&gt;&lt;strong&gt;new&lt;/strong&gt;&lt;/a&gt; operator when creating instances. I hope with the prototype concept aside it should be easy to demystify their existence. &lt;/p&gt;
+&lt;p&gt;Every function (&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#use_of_prototype_property&quot;&gt;except fat arrow&lt;/a&gt;) in JavaScript has a property called &lt;code class=&quot;language-text&quot;&gt;prototype&lt;/code&gt; which is just a plain object with &lt;code class=&quot;language-text&quot;&gt;constructor&lt;/code&gt; property. This is different from the internal [[Prototype]] relationship. &lt;/p&gt;
+&lt;p&gt;Let’s revisit the previous &lt;code class=&quot;language-text&quot;&gt;recipe&lt;/code&gt; example and see how can you establish the same prototypal relationship using the constructor function.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Constructor function &apos;Recipe&apos;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Recipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+Recipe&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;hasOwnProperty&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;prototype&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// true&lt;/span&gt;
+&lt;span class=&quot;token class-name&quot;&gt;Recipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;constructor &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; Recipe&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Visually it will look similar to the diagram below: &lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/ce9aea82e0ecf03cef17d5d9f08dbbc2/ffa0f/function-prototype.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 311px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 33.78378378378378%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAA9hAAAPYQGoP6dpAAABTUlEQVQoz2NgIAxYgFgAiIWwYF4gZmQgAXAAsTDUUHzy7HCRJUuWMN65cwduy////8FsBQUFLn5+fmGYODs7RE9oaChjfX0908GDBxlh6gUEBERkZGS40G1jRnM+D4zByckJFndycsLnPW4wuWnTJmWgbarR0dH+3t7eUeHh4Y6+vr6O06dP13/w4IGctbU1iiEXLlzg2rdvn9rp06eVjx8/rgxkq6xatUqprq5Oc9KkSQYMly9f/nTr1q2PQPzu8ePH7/79+/fh8+fP765du/b1zJkzj9LS0lRAjrS0tBQE+WD58uV1wCD6e/Pmzfe3b9/+eP/+/Y9//vz59PLly4979uz5xHDixIn/QM3/gZr/37hx4//Xr1//P3/+HCx29uzZD7W1tfIglyUlJYHDaM2aNTVAQ/5funQJjIEG///y5cv/R48e/T927Nh/ABTIp2mM0ilQAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Constructor function&quot;
+        title=&quot;&quot;
+        src=&quot;/static/ce9aea82e0ecf03cef17d5d9f08dbbc2/ffa0f/function-prototype.png&quot;
+        srcset=&quot;/static/ce9aea82e0ecf03cef17d5d9f08dbbc2/12f09/function-prototype.png 148w,
+/static/ce9aea82e0ecf03cef17d5d9f08dbbc2/e4a3f/function-prototype.png 295w,
+/static/ce9aea82e0ecf03cef17d5d9f08dbbc2/ffa0f/function-prototype.png 311w&quot;
+        sizes=&quot;(max-width: 311px) 100vw, 311px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;The property (prototype) is special because when you invoke &lt;code class=&quot;language-text&quot;&gt;Recipe()&lt;/code&gt; using the &lt;strong&gt;new&lt;/strong&gt; operator, the new operator uses &lt;code class=&quot;language-text&quot;&gt;Recipe.prototype&lt;/code&gt; as a prototype for instances it creates. Once the instance is created, the new operator passes that instance as &lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt; internally as one of the parameters to &lt;code class=&quot;language-text&quot;&gt;Recipe()&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; recipe &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Recipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Garlic Naan&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/294d7d62aa993779cc5094e0bbcf79fc/7c2a6/prototypal-delegation.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 351px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 70.27027027027026%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAA9hAAAPYQGoP6dpAAACT0lEQVQ4y6VTPWhaURR+1xhJE9MmfbagTQUHwUqhg4ODOFU6WJSClFCqQ3d1qnSxgliwi8HBRRBRUXBwEEFBpVEQNdTBiII/QVARHMQgbtaf13MfmoS0xJQeONx7zvvOud/5eQRxt+yAHqz00Y07GxT9NUIoFBJ8Ph8plUqCoihCKpXSfgaDwV4F/iFMJpOFEDrcBsG2WCym/ScnJ9cgnOzs7IyB70dHR/s8Hm/vZhKJRILS6TSj1WqhFR4B7rFMJmOtMTabjT6fg/IxqZX/AegucX+hWa7IEkQulysVi8VypVLJjUajdL/fz5dKpeL5+XmYy+XuikSiLYwzm80vgF0a9LTRaPzo9Xqn4/E4nc1mfxYKBSfG5PN5RFSr1SkApuVyeTaZTBZQyvTi4oICu0eS5BM2m72PCej1+teAm9Xr9UWtVpsPBoPFcrn81Ww2MTaLE2YyGURYrVaO3+/nhEIh0mg0kiqVirTb7dh3eLs2p9NJ+nw+MhAIkBaLhaPVag8UCsVLtVrNw981Gs3dzYFH6FMgEGxarWtxu90IAhG8ioLBIAJmyOPxIGCyniaNi0ajVzGdTmcb+s6Cb0y5XE46HI4duG9B6cx7jXGdFAT38yHxPxIOh+nT6/WSMM1v0Pjv3W7XBNtgarfbn2FLvsKgvgyHQxNshmljQkhA72csFnsFTCkIpGazGbWWy8vLK3s+n1MbExoMBvrU6XScVCr1LhKJfIRevQV2b6Cv7xOJxId4PH6cTCaPXS7Xp3+pHk9z79Zftb+yn4I+wwvxG60+IFSMm2uaAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Recipe instance delegates the task to its prototype&quot;
+        title=&quot;&quot;
+        src=&quot;/static/294d7d62aa993779cc5094e0bbcf79fc/7c2a6/prototypal-delegation.png&quot;
+        srcset=&quot;/static/294d7d62aa993779cc5094e0bbcf79fc/12f09/prototypal-delegation.png 148w,
+/static/294d7d62aa993779cc5094e0bbcf79fc/e4a3f/prototypal-delegation.png 295w,
+/static/294d7d62aa993779cc5094e0bbcf79fc/7c2a6/prototypal-delegation.png 351w&quot;
+        sizes=&quot;(max-width: 351px) 100vw, 351px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;Now, it should be clear that why do we need to add properties to &lt;code class=&quot;language-text&quot;&gt;Recipe.prototype&lt;/code&gt;: they become available on all the &lt;code class=&quot;language-text&quot;&gt;Recipe&lt;/code&gt; instances via prototypal delegation. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;_&lt;/strong&gt;proto&lt;strong&gt;_&lt;/strong&gt; is a pseudo property for accessing the prototype of an object&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Adding properties to &apos;Recipe.prototype&apos; will make them &lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// available on all `Recipe` instances. &lt;/span&gt;
+&lt;span class=&quot;token class-name&quot;&gt;Recipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function-variable function&quot;&gt;getRecipeName&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/b2db457db60546dc3999597dc8181ad4/2add2/delegation.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 381px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 68.91891891891892%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAA9hAAAPYQGoP6dpAAACK0lEQVQ4y2NgwA/YgJgPCfNi4bOia2KEYnQAUsyNQw4GmJHUoYL///8zP3jwgAVIM+rr6wvp6upyIsuvXr2aZd++fSzbt29nOXbsGMuNGzdAaplB6h0cHATc3Nx4gWwmkFoJIBZC0suEZAkDyWDbtm1Hd+7ceeLixYubPnz4sOr69evbz5w5s+3o0aPhIHkPDw8OIMV16tSpCTdv3tx09erV1Q8fPlz74sWLNY8fP17z9u3btR8/flxz6dKlDZcvX17HAGR8uXbt2mcg/ePr16+/vnz58vnChQv/T58+XQcy0NfXlwtICQANvHD79u0/QE2fgYZ9Aar99vr165+/fv369u/fv69AS77evXv3B8PSpUtF9+/fL7Zr1y7R2bNni3R1dYkCXSe2du1alDC0tLQ0BIaTjZeXl5m9vb2lORD4+PioOzk5GZiamloEBwfr9/f3S+MNDn9/fzBtZGQEoqSxYFDYiwKxJBCrgpPSli1bGA8cOMAIjEEwDQxPxh07djACXYjXMlDsQmMZHIl6enoSK1asYCU68pBinJmBEjBx4kSG3bt3g9nAMI6eMGHCRGCYpz979iwMGONRwMiIBOIIoJq0K1euuBM0EBjjcNcBDTn548eP/2/evPmPDt6/f///0aNHtwga2NbWBmcvX77cdcOGDUmHDx8OAbrGD5gyIoE5Jx5Ix2zdujV58+bNnkR73dbWFpSnBYFYEUqD+PxALA/EMkCsDMQiAGVuL25rsBxdAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Adding properties to prototype&quot;
+        title=&quot;&quot;
+        src=&quot;/static/b2db457db60546dc3999597dc8181ad4/2add2/delegation.png&quot;
+        srcset=&quot;/static/b2db457db60546dc3999597dc8181ad4/12f09/delegation.png 148w,
+/static/b2db457db60546dc3999597dc8181ad4/e4a3f/delegation.png 295w,
+/static/b2db457db60546dc3999597dc8181ad4/2add2/delegation.png 381w&quot;
+        sizes=&quot;(max-width: 381px) 100vw, 381px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;Similarly, we can extend the chain and delegate the task of ordering the recipe to another object by setting it as a &lt;code class=&quot;language-text&quot;&gt;Recipe.prototype&lt;/code&gt; prototype.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Order constructor&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Order&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token class-name&quot;&gt;Order&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;recipeOrder &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;recipeOrder&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt; ordered!&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Setting up the delegation aka Prototypal inheritance&lt;/span&gt;
+Object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setPrototypeOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Recipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Order&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+recipe&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;orderRecipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// prints &apos;Garlic Naan ordered!&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The complete code example using Function constructor looks like:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Constructor function &apos;Recipe&apos;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Recipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+Recipe&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;hasOwnProperty&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;prototype&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// true&lt;/span&gt;
+&lt;span class=&quot;token class-name&quot;&gt;Recipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;constructor &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; Recipe&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// true&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; recipe &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Recipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Garlic Naan&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token class-name&quot;&gt;Recipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function-variable function&quot;&gt;getName&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Order constructor&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Order&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token class-name&quot;&gt;Order&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;recipeOrder &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;recipeOrder&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt; ordered!&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Setting up the delegation aka Prototypal inheritance&lt;/span&gt;
+Object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setPrototypeOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;Recipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Order&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Prototypal delegation in action&lt;/span&gt;
+recipe&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getRecipeName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// prints &apos;Garlic Naan&apos;&lt;/span&gt;
+recipe&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;orderRecipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// prints &apos;Garlic Naan ordered!&apos;&lt;/span&gt;
+recipe&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;hasOwnProperty&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;//true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here’s how the final prototype chain looks like: &lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/53bacb3bbf9aaec70f32f53ccdd1053f/9bb7a/proto-delegation.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 43.24324324324324%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsSAAALEgHS3X78AAABBUlEQVQoz21ShwqFQAy7//89EUHBiXvh3vaRQsUnVyh6Z5umieq+b0Icx0HzPGvzui6SOnlK4PxOhcvzPGnbNtIFvq3r+gdWFAXXf8ERKk1TkkT0fc8NTdPQMAzcWJYlVVX1DDBNkzzP41rHcWgcR67Dlqqu6wcEF3mek2EYZFkW+b7Pg9AMUGG5LAtLMU0T92GISKa+lFHsui7FcczgbdtSFEWc+75T13XPGVugNkkS3gZM1VtQMQeT8cQaMAQboBkBPbGmbdvMGgPCMOQBqFdfxwQUU7EKAMH6bQzeJcEaQGKq+tqPAEOwyLKMdYHOYprO2TeGliEAgyB49IKr0FT3333zB8+RuS3ZamjTAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Final prototypal delegation in action&quot;
+        title=&quot;&quot;
+        src=&quot;/static/53bacb3bbf9aaec70f32f53ccdd1053f/fcda8/proto-delegation.png&quot;
+        srcset=&quot;/static/53bacb3bbf9aaec70f32f53ccdd1053f/12f09/proto-delegation.png 148w,
+/static/53bacb3bbf9aaec70f32f53ccdd1053f/e4a3f/proto-delegation.png 295w,
+/static/53bacb3bbf9aaec70f32f53ccdd1053f/fcda8/proto-delegation.png 590w,
+/static/53bacb3bbf9aaec70f32f53ccdd1053f/9bb7a/proto-delegation.png 676w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;Closing thoughts&lt;/h2&gt;
+&lt;p&gt;Prototypes in JavaScript may seem daunting to begin with, but I hope this article has eased your learning path. Understanding the foundation of JavaScript is the key to become a good developer. If you want to explore more about the prototype chain, then I highly recommend reading this &lt;a href=&quot;https://exploringjs.com/impatient-js/ch_proto-chains-classes.html#prototype-chains&quot;&gt;chapter&lt;/a&gt; by Dr. Axel. Thank you for reading 😍.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[How to smartly cleanup your commit history using git reset?]]></title><description><![CDATA[TLDR Running  will move the branch to this old commit. And now when you run , you will see all the changes you have made since  in your…]]></description><link>https://amanexplains.com/how-to-smartly-cleanup-your-commit-history-using-git/</link><guid isPermaLink="false">https://amanexplains.com/how-to-smartly-cleanup-your-commit-history-using-git/</guid><pubDate>Mon, 17 Aug 2020 22:12:03 GMT</pubDate><content:encoded>&lt;h3&gt;TLDR&lt;/h3&gt;
 &lt;p&gt;Running &lt;code class=&quot;language-text&quot;&gt;git reset --soft &amp;lt;commit-hash&amp;gt;&lt;/code&gt; will move the branch to this old commit. And now when you run &lt;code class=&quot;language-text&quot;&gt;git status&lt;/code&gt;, you will see all the changes you have made since &lt;code class=&quot;language-text&quot;&gt;commit-hash&lt;/code&gt; in your staging area. You can then create a single commit to update your commit history. &lt;/p&gt;
 &lt;p&gt;With &lt;code class=&quot;language-text&quot;&gt;--mixed&lt;/code&gt;(also a default) flag, Git will match your staging area with the content snapshot at that commit, which means all those changes since old commit have been unstaged too. Now, you can selectively stage those files and can create multiple new commits however you want.&lt;/p&gt;
 &lt;hr&gt;
@@ -8,72 +281,10 @@
 &lt;p&gt;Let’s get started. &lt;/p&gt;
 &lt;h3&gt;Pointers 👈&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;HEAD&lt;/strong&gt; and &lt;strong&gt;branch&lt;/strong&gt; are two different concepts in Git. The branch is just a lightweight movable pointer to one of the commits you are on, whereas, HEAD by default points to the branch you are currently on.&lt;/p&gt;
-&lt;p&gt;
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/d560e44680db636724edf0254f829546/2e9f9/Pointer.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 292px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 89.86486486486487%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAAAsSAAALEgHS3X78AAACVUlEQVQ4y4VUO4tTQRQeEUs7sdjWQkVhWwvBH2GldlYrVoKIZmGFLGhnKzaKIBbikqSQxV0QkSXZbBFXQ2LM5sbcPDaPzfMmue+bz5m5D2NybzJwmDPzzfnOd+bcuQQT2GPiGGbWMzaZ2IcsU4Xy5xOU31sY5z5Czkch/3oLMkfol8CH0NAGwPEeat+/4Fv0DY4Sn2HRBOQ/VfBRiGCFqrgLTdhGPxuFWtyBkv/gEC6z6TyU0CPVZUCXIAoZmGqPrkeUEEuIfPZsvn+Z4oc5KI5PfBuyoGyujqmkS3l/C2pkE3sbN9F5H4K889LnDpc0yS3X1E2M1q9AX6OawpdhPToH6RYBce9k1txgX4wRGpZNeP8MtPAqjMcrkG4Tp2TMX/z0PIc5JSsHMcjRZ2i8o+XGnmO8+8pWaBiGZ5Zl8SA2cyWm6WHMd7GJQ8rG9tcEBrrTlFKphGaziZOTEzQaDdRqNU+NJEmoVCocY1Yul9Hv9z38uFZFndrBfgLVsohSUQCpVqucKJVKoV6vo9VqIRKJ8OBsNstJ0+k092VZRjweRzKZhCAI/Eyv10Mmk+GxjIsUi0VOyDbZAQYwnwWLosiV5XI5FAoFtNtt7rOKut0ux9neUT7PORgXYRvMWCY2dzodryRN03gww5gxX1EUD3f3o7EYyvRqut1OcJf9OuwOt2Hu+HH4E5qq2U1Z9K0FY7TTdBq+XsModAm90FWMN1YxCF9f8PQCBE6/lPGTizBDKzBf3ID19AKGd0jA3wbB/vRLGW9eg37vFLSH52E8OIvh3dP4C7+MSv2roYSbAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;Pointers&quot;
-        title=&quot;&quot;
-        src=&quot;/static/d560e44680db636724edf0254f829546/2e9f9/Pointer.png&quot;
-        srcset=&quot;/static/d560e44680db636724edf0254f829546/12f09/Pointer.png 148w,
-/static/d560e44680db636724edf0254f829546/2e9f9/Pointer.png 292w&quot;
-        sizes=&quot;(max-width: 292px) 100vw, 292px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;Pointer.png&quot; alt=&quot;Pointers&quot;&gt;&lt;/p&gt;
 &lt;p&gt;When Git moves the HEAD, it also modifies the index and working directory to reflect the changes of that commit.&lt;/p&gt;
 &lt;p&gt;Now when you run &lt;code class=&quot;language-text&quot;&gt;git reset&lt;/code&gt;, it moves the branch HEAD is pointing to. For example, if you are on &lt;code class=&quot;language-text&quot;&gt;master&lt;/code&gt; branch, running &lt;code class=&quot;language-text&quot;&gt;git reset 8fgh5&lt;/code&gt; will move the branch to this commit as shown in the picture below:
-
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/2e8eff9a0f5b4b9f49aa510339223c35/2e9f9/git%20reset.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block;  max-width: 292px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 93.24324324324323%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAAsSAAALEgHS3X78AAACn0lEQVQ4y4VU32vTUBQOoq++DV+dIPjki/jkm/pfyIThwB8wfXHsQUEEFdE3fRkoCP6g4oOWsVqY4nRTRxHcaLu1tulMW9e1c9QmaZo2ae5nzk2ypE3EkMM9JznnO985594rgAFBYcwCPYZcgp5/iU7hDTo/Xtv6K+jSW+5mO9kv1/zHNYWg4fg6gOafHAzpCzILcXyde47f2Y+waouwrL7rx3wg5oMKQSMISAy7YhxaMQElP4ueOIdueT7MkA0SEoYzeI7MsoFNBfJOBY1fRcoAy9AG2Q2XzCIAvQDv03bbREasBlrCQiBhwCEw3kN5B8bSM5Rjt/H53gUYHx5Bz37abQv3Y1ElD9FmbtP170l0xgSYV0eA6wfRHReg3jrhxNo+IUA23EOPoQf4bRZdG7B/8wjMu8dhnBfQvnEsGjBYMnMn5os75YYE7ellNGfGUX84Bu3xBLSFJ7sDC8c5IoSGxTP7Q2n1gFpT89vs/ouaNAc0TROeWJblT9kNkH6W8P7dPJxKzQGgfr+/G0s67+HW1hbq9TpoLZfL0HXdYdZqcZskl8thc3MT1aq/fcifbFo9fXl52QFMpVKQJImDxGIxlEolpNNpKIqCTCaDlZUVqKqKbDaLZDKJjY0NnqTT6WB1dRXr6+tot9uIx+MQKpUK1tbWuBPptFJZxJrsYrGIfD7PGRYKBTSbTV4iEaBvoihyIT2RSECgzJSJMhCjYH9kWYamaVxIJz/vIZ2AF5eWkM6k0TN6kO0KI6cceVb/8V8sltBobPsnJWovBQND4m789ux9qFcOQJ46BHVqFOr0YdSunYy4HIb1gcuXOafENrWZs+hP7oX14BSsO0dhXtqD8mkhfDn8D9BjqL6YhnJGgDI5AuXifijn9qE6MYq/h06SRHCjhjQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;git reset&quot;
-        title=&quot;&quot;
-        src=&quot;/static/2e8eff9a0f5b4b9f49aa510339223c35/2e9f9/git%20reset.png&quot;
-        srcset=&quot;/static/2e8eff9a0f5b4b9f49aa510339223c35/12f09/git%20reset.png 148w,
-/static/2e8eff9a0f5b4b9f49aa510339223c35/2e9f9/git%20reset.png 292w&quot;
-        sizes=&quot;(max-width: 292px) 100vw, 292px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/p&gt;
+&lt;img src=&quot;git%20reset.png&quot; alt=&quot;git reset&quot;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;git reset&lt;/code&gt; moves the branch HEAD is pointing to.
 &lt;code class=&quot;language-text&quot;&gt;git checkout &amp;lt;branch-name&amp;gt;&lt;/code&gt; moves the HEAD to that branch.&lt;/p&gt;

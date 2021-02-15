@@ -8,7 +8,7 @@
 /* sc-component-id: blog-post__Paragraph-jy4fwx-0 */
 .cxLgtD{font-size:0.83255rem;line-height:1.75rem;display:block;margin-bottom:1.75rem;margin-top:-1.75rem;}
 /* sc-component-id: blog-post__UnorderedList-jy4fwx-1 */
-.cHZhRD{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flexWrap:wrap;-ms-flexWrap:wrap;flexWrap:wrap;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;list-style:none;padding:0;}</style><link as="script" rel="preload" href="/webpack-runtime-75b148c1d58b97fd13c3.js"/><link as="script" rel="preload" href="/framework-b5b229d58c3c710d5429.js"/><link as="script" rel="preload" href="/app-56dd1924f21f0a729fc9.js"/><link as="script" rel="preload" href="/styles-89fd2ae28bdf06750a71.js"/><link as="script" rel="preload" href="/d5d7a013bc6c1e2b6d7db819052c16d7efea5559-7b7a50536278fe733f8c.js"/><link as="script" rel="preload" href="/cd7d5f864fc9e15ed8adef086269b0aeff617554-a8a51214459cb5d87118.js"/><link as="script" rel="preload" href="/component---src-templates-blog-post-js-c671b1810a079f5510b4.js"/><link as="fetch" rel="preload" href="/page-data/how-to-smartly-cleanup-your-commit-history-using-git/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/426816048.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/63159454.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="layout__Container-sc-1jvcolp-3 brHEdM"><header><h3 class="layout__HeadingH3-sc-1jvcolp-1 kfenVF"><a class="layout__HeadingLink-sc-1jvcolp-2 rpgvf" href="/">Aman&#x27;s Blog</a></h3> </header><main><h1>How to smartly cleanup your commit history using git reset?</h1><p class="blog-post__Paragraph-jy4fwx-0 cxLgtD">August 17, 2020</p><div><h3>TLDR</h3>
+.cHZhRD{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flexWrap:wrap;-ms-flexWrap:wrap;flexWrap:wrap;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;list-style:none;padding:0;}</style><link as="script" rel="preload" href="/webpack-runtime-3471ccdb834a7bb4621c.js"/><link as="script" rel="preload" href="/framework-b5b229d58c3c710d5429.js"/><link as="script" rel="preload" href="/app-56dd1924f21f0a729fc9.js"/><link as="script" rel="preload" href="/styles-89fd2ae28bdf06750a71.js"/><link as="script" rel="preload" href="/d5d7a013bc6c1e2b6d7db819052c16d7efea5559-7b7a50536278fe733f8c.js"/><link as="script" rel="preload" href="/cd7d5f864fc9e15ed8adef086269b0aeff617554-04176356bae7aebddc96.js"/><link as="script" rel="preload" href="/component---src-templates-blog-post-js-c671b1810a079f5510b4.js"/><link as="fetch" rel="preload" href="/page-data/how-to-smartly-cleanup-your-commit-history-using-git/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/426816048.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/63159454.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="layout__Container-sc-1jvcolp-3 brHEdM"><header><h3 class="layout__HeadingH3-sc-1jvcolp-1 kfenVF"><a class="layout__HeadingLink-sc-1jvcolp-2 rpgvf" href="/">Aman&#x27;s Blog</a></h3> </header><main><h1>How to smartly cleanup your commit history using git reset?</h1><p class="blog-post__Paragraph-jy4fwx-0 cxLgtD">August 17, 2020</p><div><h3>TLDR</h3>
 <p>Running <code class="language-text">git reset --soft &lt;commit-hash&gt;</code> will move the branch to this old commit. And now when you run <code class="language-text">git status</code>, you will see all the changes you have made since <code class="language-text">commit-hash</code> in your staging area. You can then create a single commit to update your commit history. </p>
 <p>With <code class="language-text">--mixed</code>(also a default) flag, Git will match your staging area with the content snapshot at that commit, which means all those changes since old commit have been unstaged too. Now, you can selectively stage those files and can create multiple new commits however you want.</p>
 <hr>
@@ -18,72 +18,10 @@
 <p>Let’s get started. </p>
 <h3>Pointers 👈</h3>
 <p><strong>HEAD</strong> and <strong>branch</strong> are two different concepts in Git. The branch is just a lightweight movable pointer to one of the commits you are on, whereas, HEAD by default points to the branch you are currently on.</p>
-<p>
-  <a
-    class="gatsby-resp-image-link"
-    href="/static/d560e44680db636724edf0254f829546/2e9f9/Pointer.png"
-    style="display: block"
-    target="_blank"
-    rel="noopener"
-  >
-  
-  <span
-    class="gatsby-resp-image-wrapper"
-    style="position: relative; display: block;  max-width: 292px; margin-left: auto; margin-right: auto;"
-  >
-    <span
-      class="gatsby-resp-image-background-image"
-      style="padding-bottom: 89.86486486486487%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAAAsSAAALEgHS3X78AAACVUlEQVQ4y4VUO4tTQRQeEUs7sdjWQkVhWwvBH2GldlYrVoKIZmGFLGhnKzaKIBbikqSQxV0QkSXZbBFXQ2LM5sbcPDaPzfMmue+bz5m5D2NybzJwmDPzzfnOd+bcuQQT2GPiGGbWMzaZ2IcsU4Xy5xOU31sY5z5Czkch/3oLMkfol8CH0NAGwPEeat+/4Fv0DY4Sn2HRBOQ/VfBRiGCFqrgLTdhGPxuFWtyBkv/gEC6z6TyU0CPVZUCXIAoZmGqPrkeUEEuIfPZsvn+Z4oc5KI5PfBuyoGyujqmkS3l/C2pkE3sbN9F5H4K889LnDpc0yS3X1E2M1q9AX6OawpdhPToH6RYBce9k1txgX4wRGpZNeP8MtPAqjMcrkG4Tp2TMX/z0PIc5JSsHMcjRZ2i8o+XGnmO8+8pWaBiGZ5Zl8SA2cyWm6WHMd7GJQ8rG9tcEBrrTlFKphGaziZOTEzQaDdRqNU+NJEmoVCocY1Yul9Hv9z38uFZFndrBfgLVsohSUQCpVqucKJVKoV6vo9VqIRKJ8OBsNstJ0+k092VZRjweRzKZhCAI/Eyv10Mmk+GxjIsUi0VOyDbZAQYwnwWLosiV5XI5FAoFtNtt7rOKut0ux9neUT7PORgXYRvMWCY2dzodryRN03gww5gxX1EUD3f3o7EYyvRqut1OcJf9OuwOt2Hu+HH4E5qq2U1Z9K0FY7TTdBq+XsModAm90FWMN1YxCF9f8PQCBE6/lPGTizBDKzBf3ID19AKGd0jA3wbB/vRLGW9eg37vFLSH52E8OIvh3dP4C7+MSv2roYSbAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
-    >
-      <img
-        class="gatsby-resp-image-image"
-        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
-        alt="Pointers"
-        title=""
-        src="/static/d560e44680db636724edf0254f829546/2e9f9/Pointer.png"
-        srcset="/static/d560e44680db636724edf0254f829546/12f09/Pointer.png 148w,
-/static/d560e44680db636724edf0254f829546/2e9f9/Pointer.png 292w"
-        sizes="(max-width: 292px) 100vw, 292px"
-      />
-    </span>
-  </span>
-  
-  </a>
-    </p>
+<p><img src="Pointer.png" alt="Pointers"></p>
 <p>When Git moves the HEAD, it also modifies the index and working directory to reflect the changes of that commit.</p>
 <p>Now when you run <code class="language-text">git reset</code>, it moves the branch HEAD is pointing to. For example, if you are on <code class="language-text">master</code> branch, running <code class="language-text">git reset 8fgh5</code> will move the branch to this commit as shown in the picture below:
-
-  <a
-    class="gatsby-resp-image-link"
-    href="/static/2e8eff9a0f5b4b9f49aa510339223c35/2e9f9/git%20reset.png"
-    style="display: block"
-    target="_blank"
-    rel="noopener"
-  >
-  
-  <span
-    class="gatsby-resp-image-wrapper"
-    style="position: relative; display: block;  max-width: 292px; margin-left: auto; margin-right: auto;"
-  >
-    <span
-      class="gatsby-resp-image-background-image"
-      style="padding-bottom: 93.24324324324323%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAAsSAAALEgHS3X78AAACn0lEQVQ4y4VU32vTUBQOoq++DV+dIPjki/jkm/pfyIThwB8wfXHsQUEEFdE3fRkoCP6g4oOWsVqY4nRTRxHcaLu1tulMW9e1c9QmaZo2ae5nzk2ypE3EkMM9JznnO985594rgAFBYcwCPYZcgp5/iU7hDTo/Xtv6K+jSW+5mO9kv1/zHNYWg4fg6gOafHAzpCzILcXyde47f2Y+waouwrL7rx3wg5oMKQSMISAy7YhxaMQElP4ueOIdueT7MkA0SEoYzeI7MsoFNBfJOBY1fRcoAy9AG2Q2XzCIAvQDv03bbREasBlrCQiBhwCEw3kN5B8bSM5Rjt/H53gUYHx5Bz37abQv3Y1ElD9FmbtP170l0xgSYV0eA6wfRHReg3jrhxNo+IUA23EOPoQf4bRZdG7B/8wjMu8dhnBfQvnEsGjBYMnMn5os75YYE7ellNGfGUX84Bu3xBLSFJ7sDC8c5IoSGxTP7Q2n1gFpT89vs/ouaNAc0TROeWJblT9kNkH6W8P7dPJxKzQGgfr+/G0s67+HW1hbq9TpoLZfL0HXdYdZqcZskl8thc3MT1aq/fcifbFo9fXl52QFMpVKQJImDxGIxlEolpNNpKIqCTCaDlZUVqKqKbDaLZDKJjY0NnqTT6WB1dRXr6+tot9uIx+MQKpUK1tbWuBPptFJZxJrsYrGIfD7PGRYKBTSbTV4iEaBvoihyIT2RSECgzJSJMhCjYH9kWYamaVxIJz/vIZ2AF5eWkM6k0TN6kO0KI6cceVb/8V8sltBobPsnJWovBQND4m789ux9qFcOQJ46BHVqFOr0YdSunYy4HIb1gcuXOafENrWZs+hP7oX14BSsO0dhXtqD8mkhfDn8D9BjqL6YhnJGgDI5AuXifijn9qE6MYq/h06SRHCjhjQAAAAASUVORK5CYII='); background-size: cover; display: block;"
-    >
-      <img
-        class="gatsby-resp-image-image"
-        style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;"
-        alt="git reset"
-        title=""
-        src="/static/2e8eff9a0f5b4b9f49aa510339223c35/2e9f9/git%20reset.png"
-        srcset="/static/2e8eff9a0f5b4b9f49aa510339223c35/12f09/git%20reset.png 148w,
-/static/2e8eff9a0f5b4b9f49aa510339223c35/2e9f9/git%20reset.png 292w"
-        sizes="(max-width: 292px) 100vw, 292px"
-      />
-    </span>
-  </span>
-  
-  </a>
-    </p>
+<img src="git%20reset.png" alt="git reset"></p>
 <blockquote>
 <p><code class="language-text">git reset</code> moves the branch HEAD is pointing to.
 <code class="language-text">git checkout &lt;branch-name&gt;</code> moves the HEAD to that branch.</p>
@@ -115,4 +53,4 @@
 /static/c03d5c85167bc1eb9618108b2333e2fc/aba1d/profile-pic.jpg 1.5x,
 /static/c03d5c85167bc1eb9618108b2333e2fc/b315d/profile-pic.jpg 2x" /><img loading="lazy" width="50" height="50" srcset="/static/c03d5c85167bc1eb9618108b2333e2fc/99438/profile-pic.jpg 1x,
 /static/c03d5c85167bc1eb9618108b2333e2fc/aba1d/profile-pic.jpg 1.5x,
-/static/c03d5c85167bc1eb9618108b2333e2fc/b315d/profile-pic.jpg 2x" src="/static/c03d5c85167bc1eb9618108b2333e2fc/99438/profile-pic.jpg" alt="Amandeep Singh" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div><p>Written by<!-- --> <a href="https://twitter.com/amn_sngh"><strong>Amandeep Singh</strong></a>. Developer @ <a href="https://www.thinkmill.com.au/">Thinkmill</a> Sydney. Tech enthusiast and a pragmatic programmer.</p></div><ul class="blog-post__UnorderedList-jy4fwx-1 cHZhRD"><li><a rel="prev" href="/git-interactive-enhance-your-work-productiviy-by-10X/">← <!-- -->Git Interactive—enhance your work productivity by 10X</a></li><li></li></ul></main><footer>© <!-- -->2020<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/how-to-smartly-cleanup-your-commit-history-using-git/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-905013744daa67b74738.js"],"app":["/app-56dd1924f21f0a729fc9.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-f3d0a21fe8149f33caf4.js"],"component---src-pages-404-js":["/component---src-pages-404-js-0559109825d05de6d257.js"],"component---src-pages-index-js":["/component---src-pages-index-js-1f6a6612ac1ad740b5de.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-c671b1810a079f5510b4.js"]};/*]]>*/</script><script src="/polyfill-905013744daa67b74738.js" nomodule=""></script><script src="/component---src-templates-blog-post-js-c671b1810a079f5510b4.js" async=""></script><script src="/cd7d5f864fc9e15ed8adef086269b0aeff617554-a8a51214459cb5d87118.js" async=""></script><script src="/d5d7a013bc6c1e2b6d7db819052c16d7efea5559-7b7a50536278fe733f8c.js" async=""></script><script src="/styles-89fd2ae28bdf06750a71.js" async=""></script><script src="/app-56dd1924f21f0a729fc9.js" async=""></script><script src="/framework-b5b229d58c3c710d5429.js" async=""></script><script src="/webpack-runtime-75b148c1d58b97fd13c3.js" async=""></script></body></html>
+/static/c03d5c85167bc1eb9618108b2333e2fc/b315d/profile-pic.jpg 2x" src="/static/c03d5c85167bc1eb9618108b2333e2fc/99438/profile-pic.jpg" alt="Amandeep Singh" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div><p>Written by<!-- --> <a href="https://twitter.com/amn_sngh"><strong>Amandeep Singh</strong></a>. Developer @ <a href="https://www.domain.com.au/">Domain</a> <!-- -->Sydney. Tech enthusiast and a pragmatic programmer.</p></div><ul class="blog-post__UnorderedList-jy4fwx-1 cHZhRD"><li><a rel="prev" href="/git-interactive-enhance-your-work-productiviy-by-10X/">← <!-- -->Git Interactive—enhance your work productivity by 10X</a></li><li><a rel="next" href="/an-easy-explanation-to-prototypal-delegation-in-javascript/">An Easy Explanation to Prototypal Delegation in JavaScript<!-- --> →</a></li></ul></main><footer>© <!-- -->2021<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/how-to-smartly-cleanup-your-commit-history-using-git/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-905013744daa67b74738.js"],"app":["/app-56dd1924f21f0a729fc9.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-f3d0a21fe8149f33caf4.js"],"component---src-pages-404-js":["/component---src-pages-404-js-0559109825d05de6d257.js"],"component---src-pages-index-js":["/component---src-pages-index-js-1f6a6612ac1ad740b5de.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-c671b1810a079f5510b4.js"]};/*]]>*/</script><script src="/polyfill-905013744daa67b74738.js" nomodule=""></script><script src="/component---src-templates-blog-post-js-c671b1810a079f5510b4.js" async=""></script><script src="/cd7d5f864fc9e15ed8adef086269b0aeff617554-04176356bae7aebddc96.js" async=""></script><script src="/d5d7a013bc6c1e2b6d7db819052c16d7efea5559-7b7a50536278fe733f8c.js" async=""></script><script src="/styles-89fd2ae28bdf06750a71.js" async=""></script><script src="/app-56dd1924f21f0a729fc9.js" async=""></script><script src="/framework-b5b229d58c3c710d5429.js" async=""></script><script src="/webpack-runtime-3471ccdb834a7bb4621c.js" async=""></script></body></html>
